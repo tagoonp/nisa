@@ -38,8 +38,9 @@ h1, h2, h3, h4, h5, h6{
   position: fixed;
   top: 0px;
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
   z-index: 9999999;
+  background: rgb(47, 47, 47);
 }
 
 .c-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

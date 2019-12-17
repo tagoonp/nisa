@@ -60,17 +60,21 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
   <div class="tools-bar">
     <div class="row">
-      <div class="col-12 text-right">
+      <div class="col-12 col-sm-6 text-white">
+        Hello, <span class="userFullname text-primary"><i class="fas fa-sync fa-spin text-primary"></i></span>
+      </div>
+      <div class="col-12 col-sm-6 text-right">
         <button type="button" class="btn btn-sm- btn-primary" name="button" style="font-size: 0.7em;" onclick="changeFontsize(1)"><i class="fas fa-plus text-white"  style="font-size: 0.7em;"></i> Font Size</button>
         <button type="button" class="btn btn-sm- btn-primary" name="button" style="font-size: 0.7em;" onclick="changeFontsize(2)"><i class="fas fa-minus text-white"  style="font-size: 0.7em;"></i> Font Size</button>
       </div>
     </div>
   </div>
+
   <div id="app">
     <section class="section">
       <div class="container-fluid mt-5 mb-5" style=" ">
         <div class="row">
-          <div class="col-12 col-sm-10 offset-sm-1 ">
+          <div class="col-12">
             <div class="login-brand">
               <!-- <img src="../../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
               <h1 class="text-white">NICU Level</h1>
@@ -93,7 +97,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
                       <div class="form-group">
                         <label for="">Choose NICU level: <span class="text-danger">**</span> </label>
-                        <select class="form-control c-input" name="">
+                        <select class="form-control c-input" name="txtLevel" id="txtLevel">
                           <option value="">-- Choose level --</option>
                           <option value="1" <?php if($hospitalChar){ if($hospData['hos_nicu_level'] == 1){ echo "selected";} } ?>>Level I</option>
                           <option value="2" <?php if($hospitalChar){ if($hospData['hos_nicu_level'] == 2){ echo "selected";} } ?>>Level II</option>
@@ -101,11 +105,9 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         </select>
                       </div>
 
-
-
                       <div class="row">
                         <div class="col-12 text-center pt-3">
-                          <button type="button" class="btn btn-primary" name="button">Update</button>
+                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.nicu('update')">Update</button>
                         </div>
                       </div>
 
@@ -212,6 +214,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/function.js"></script>
   <script src="../../assets/custom/js/authen.js"></script>
   <script src="../../assets/custom/js/authen-init.js"></script>
+  <script src="../../assets/custom/js/hospital-profile.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
