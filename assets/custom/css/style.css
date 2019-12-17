@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import url("//fonts.googleapis.com/css?family=Nunito:400,600,700,800");
+
+*, body {
+  background-color: #fafdfb;
+  font-size: 25px;
+  font-weight: 400;
+  font-family: "Nunito", "Segoe UI", arial;
+  color: #6c757d;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: "Nunito", "Segoe UI", arial;
+  font-weight: 700;
+}
