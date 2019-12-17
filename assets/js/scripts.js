@@ -481,6 +481,8 @@ $(function() {
     if (form[0].checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    }else{
+      authen.login()
     }
     form.addClass('was-validated');
   });
