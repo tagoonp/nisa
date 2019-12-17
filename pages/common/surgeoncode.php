@@ -38,12 +38,10 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
-
+  <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
   <link rel="stylesheet" href="../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
 
-  <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -89,22 +87,22 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 <h6 class="text-white">Surgeon information</h6>
                 <div class="card">
                   <div class="card-body">
                     <form class="" onsubmit="return false;">
                       <div class="form-group">
                         <label for="">Surgeon ID: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="" placeholder="Enter surgeon ID ...">
+                        <input type="text" class="form-control c-input" name="txtSurid" id="txtSurid" placeholder="Enter surgeon ID ..." autofocus>
                       </div>
                       <div class="form-group">
                         <label for="">Surgeon name: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="" placeholder="Enter name of surgeon ...">
+                        <input type="text" class="form-control c-input" name=txtSurgeonname"" id="txtSurgeonname" placeholder="Enter name of surgeon ...">
                       </div>
                       <div class="form-group">
                         <label for="">Still function: <span class="text-danger">**</span> </label>
-                        <select class="form-control c-input" name="">
+                        <select class="form-control c-input" name="txtStill" id="txtStill">
                           <option value="">-- Choose status --</option>
                           <option value="1">Yes</option>
                           <option value="0">No</option>
@@ -115,7 +113,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <div class="row">
                         <div class="col-12 text-right pt-3">
                           <button type="reset" class="btn btn-primary-" name="button">Reset</button>
-                          <button type="button" class="btn btn-primary" name="button">Record</button>
+                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.recodeSurgeon()">Record <i class="fas fa-chevron-right text-white"></i></button>
                         </div>
                       </div>
 
@@ -124,7 +122,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 </div>
                 <!-- .carc -->
               </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <h6 class="text-white">Surgeon list</h6>
                 <div class="card">
                   <div class="card-body">
@@ -172,11 +170,34 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                               ?>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button"><i class="fas fa-trash text-white"></i></button>
+                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['sur_id'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
+                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="hosp_profile.delSurgeon('<?php echo $rowData['ID'];?>')"><i class="fas fa-trash text-danger"></i></button>
                                 </td>
                                 <td><?php echo $rowData['sur_id']; ?></td>
                                 <td><?php echo $rowData['sur_name']; ?></td>
-                                <td><?php echo $rowData['sur_stillfunction']; ?></td>
+                                <td>
+                                  <?php
+                                  if($rowData['sur_stillfunction'] == 1){
+                                    ?>
+                                    <div class="form-group mb-0">
+                                      <label class="custom-switch mt-2">
+                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked onclick="hosp_profile.setSurgeon('0', '<?php echo $rowData['ID'];?>')">
+                                        <span class="custom-switch-indicator"></span>
+                                      </label>
+                                    </div>
+                                    <?php
+                                  }else{
+                                    ?>
+                                    <div class="form-group mb-0">
+                                      <label class="custom-switch mt-2">
+                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" onclick="hosp_profile.setSurgeon('1', '<?php echo $rowData['ID'];?>')">
+                                        <span class="custom-switch-indicator"></span>
+                                      </label>
+                                    </div>
+                                    <?php
+                                  }
+                                  ?>
+                                </td>
                               </tr>
                               <?php
                             }
@@ -205,6 +226,9 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/moment/min/moment.min.js"></script>
   <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
+
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -215,6 +239,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/function.js"></script>
   <script src="../../assets/custom/js/authen.js"></script>
   <script src="../../assets/custom/js/authen-init.js"></script>
+  <script src="../../assets/custom/js/hospital-profile.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
@@ -222,10 +247,23 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
       $("#table-1").dataTable({
         "columnDefs": [
+          { "width": "100px", "targets": 0 },
           { "sortable": false, "targets": [2,3] }
         ]
       });
     })
+
+    $(function(){
+      $("#txtSurid").keyup(function(){
+        $key = $("#txtSurid").val()
+        hosp_profile.get_surgeon($key)
+      })
+    })
+
+    function setLocalData(id){
+      $("#txtSurid").val(id)
+      hosp_profile.get_surgeon(id)
+    }
   </script>
 </body>
 </html>

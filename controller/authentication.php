@@ -14,6 +14,37 @@ if(
 
 $stage = mysqli_real_escape_string($conn, $_GET['stage']);
 
+if($stage == 'get_profile'){
+  if(
+      (!isset($_POST['uid']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+
+  $strSQL = "SELECT * FROM nis_useraccount a INNER JOIN nis_userinfo b ON a.uid = b.info_uid WHERE a.uid = '$uid' AND a.delete_status = 'N' AND b.use_status = 'Y' LIMIT 1 ";
+  $result = mysqli_query($conn, $strSQL);
+
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    while ($row = mysqli_fetch_array($result)) {
+      $buf = array();
+      foreach ($row as $key => $value) {
+          if(!is_int($key)){
+            $buf[$key] = $value;
+          }
+      }
+      $return[] = $buf;
+      echo json_encode($return);
+    }
+  }
+
+  mysqli_close($conn);
+  die();
+
+}
+
 if($stage == 'getFontsize'){
   if(
       (!isset($_POST['uid']))

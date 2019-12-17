@@ -38,12 +38,10 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
-
+  <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
   <link rel="stylesheet" href="../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
 
-  <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -88,26 +86,26 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 <h6 class="text-white">Ward or Unit information</h6>
                 <div class="card">
                   <div class="card-body">
                     <form class="" onsubmit="return false;">
                       <div class="form-group">
-                        <label for="">Ward's name: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="" placeholder="Define ward's code ...">
+                        <label for="">Ward's code: <span class="text-danger">**</span> </label>
+                        <input type="text" class="form-control c-input" name="txtCode" id="txtCode"  placeholder="Define ward's code ..." autofocus  tabindex="1">
                       </div>
                       <div class="form-group">
                         <label for="">Ward or Unit name: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="" placeholder="Ward or Unit name ...">
+                        <input type="text" class="form-control c-input" name="txtName" id="txtName" placeholder="Ward or Unit name ..."  tabindex="2">
                       </div>
                       <div class="form-group">
-                        <label for="">Telephone number: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="" placeholder="Phone number ...">
+                        <label for="">Telephone number: </label>
+                        <input type="text" class="form-control c-input" name="txtPhone" id="txtPhone" placeholder="Phone number ..."  tabindex="3">
                       </div>
                       <div class="form-group">
                         <label for="">Ward type: <span class="text-danger">**</span> </label>
-                        <select class="form-control c-input" name="">
+                        <select class="form-control c-input" name="txtType" id="txtType" tabindex="4">
                           <option value="">-- Choose type --</option>
                           <?php
                           $strSQL = "SELECT * FROM nis_wardtype WHERE 1 ORDER BY subtype ASC";
@@ -124,8 +122,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       </div>
 
                       <div class="row">
-                        <div class="col-12 text-center pt-3">
-                          <button type="button" class="btn btn-primary" name="button">Update</button>
+                        <div class="col-12 text-right pt-3">
+                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.recordWard()">Record <i class="fas fa-chevron-right text-white"></i></button>
                         </div>
                       </div>
 
@@ -134,7 +132,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 </div>
                 <!-- .carc -->
               </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <h6 class="text-white">Ward or Unit list</h6>
                 <div class="card">
                   <div class="card-body">
@@ -159,7 +157,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <table class="table table-striped table-sm" id="table-1">
                         <thead>
                           <tr>
-                            <th class="text-center" style="width: 200px !important; ">
+                            <th class="text-center">
 
                             </th>
                             <th>Code</th>
@@ -185,9 +183,9 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                             foreach ($columData as $rowData) {
                               ?>
                               <tr>
-                                <td style="width: 200px !important; ">
-                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button"><i class="fas fa-pencil-alt text-dark"></i></button>
-                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button"><i class="fas fa-trash text-danger"></i></button>
+                                <td>
+                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['code'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
+                                  <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="hosp_profile.delWard('<?php echo $rowData['ID'];?>')"><i class="fas fa-trash text-danger"></i></button>
                                 </td>
                                 <td><?php echo $rowData['code']; ?></td>
                                 <td><?php echo $rowData['ward_name']; ?></td>
@@ -224,6 +222,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/moment/min/moment.min.js"></script>
   <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -234,6 +234,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/function.js"></script>
   <script src="../../assets/custom/js/authen.js"></script>
   <script src="../../assets/custom/js/authen-init.js"></script>
+  <script src="../../assets/custom/js/hospital-profile.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
@@ -241,10 +242,23 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
       $("#table-1").dataTable({
         "columnDefs": [
+          { "width": "100px", "targets": 0 },
           { "sortable": false, "targets": [2,3] }
         ]
       });
     })
+
+    $(function(){
+      $("#txtCode").keyup(function(){
+        $key = $("#txtCode").val()
+        hosp_profile.get_ward($key)
+      })
+    })
+
+    function setLocalData(id){
+      $("#txtCode").val(id)
+      hosp_profile.get_ward(id)
+    }
   </script>
 </body>
 </html>

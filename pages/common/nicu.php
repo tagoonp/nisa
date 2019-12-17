@@ -40,10 +40,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
 
   <link rel="stylesheet" href="../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-
-  <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
+  <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -89,7 +87,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 <h6 class="text-white">Update NICU Level</h6>
                 <div class="card">
                   <div class="card-body">
@@ -106,8 +104,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       </div>
 
                       <div class="row">
-                        <div class="col-12 text-center pt-3">
-                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.nicu('update')">Update</button>
+                        <div class="col-12 text-right pt-3">
+                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.nicu('update')">Record <i class="fas fa-chevron-right text-white"></i></button>
                         </div>
                       </div>
 
@@ -116,7 +114,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 </div>
                 <!-- .carc -->
               </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <h6 class="text-white">Update history</h6>
                 <div class="card">
                   <div class="card-body">
@@ -163,7 +161,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                               ?>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button"><i class="fas fa-trash text-white"></i></button>
+                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button" onclick="hosp_profile.delete_nicu('<?php echo $rowData['hos_id'];?>')"><i class="fas fa-trash text-white"></i></button>
                                 </td>
                                 <td><?php echo $rowData['hos_udatetime']; ?></td>
                                 <td><?php echo $rowData['hos_nicu_level']; ?></td>
@@ -204,6 +202,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/moment/min/moment.min.js"></script>
   <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->

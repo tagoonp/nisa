@@ -38,12 +38,10 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
-
+  <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
   <link rel="stylesheet" href="../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
 
-  <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -88,23 +86,23 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
                 <h6 class="text-white">Hospital characteristic</h6>
                 <div class="card">
                   <div class="card-body">
                     <form class="" onsubmit="return false;">
                       <div class="form-group">
                         <label for="">Hospital name: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_hospname'];} ?>" placeholder="Hospital name ...">
+                        <input type="text" class="form-control c-input" name="txtHname" id="txtHname" value="<?php if($hospitalChar){ echo $hospData['hosp_hospname'];} ?>" placeholder="Hospital name ...">
                       </div>
                       <div class="form-group">
-                        <label for="">Address: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_address'];} ?>" placeholder="Address ...">
+                        <label for="">Address: </label>
+                        <input type="text" class="form-control c-input" name="txtAddress" id="txtAddress" value="<?php if($hospitalChar){ echo $hospData['hosp_address'];} ?>" placeholder="Address ...">
                       </div>
                       <div class="row">
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Country: <span class="text-danger">**</span> </label>
-                          <select class="form-control c-input" name="">
+                          <select class="form-control c-input" name="txtCountry" id="txtCountry">
                             <option value="">-- Choose country --</option>
                             <?php
                             $strSQL = "SELECT * FROM nis_country WHERE 1 ORDER BY CountryName ASC";
@@ -121,14 +119,14 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         </div>
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Bed size: <span class="text-danger">**</span> </label>
-                          <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Address ...">
+                          <input type="number" min="1" max="99999" class="form-control c-input" name="txtBedsize" id="txtBedsize" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Enter number of bed ...">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Facility type: <span class="text-danger">**</span> </label>
-                          <select class="form-control c-input" name="">
+                          <select class="form-control c-input" name="txtType" id="txtType">
                             <option value="">-- Choose facility type --</option>
                             <?php
                             $strSQL = "SELECT * FROM nis_code_hosptype WHERE 1 ORDER BY hosptype ASC";
@@ -145,7 +143,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         </div>
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Medical school: <span class="text-danger">**</span> </label>
-                          <select class="form-control c-input" name="">
+                          <select class="form-control c-input" name="txtSchool" id="txtSchool">
                             <option value="">-- Choose facility type --</option>
                             <?php
                             $strSQL = "SELECT * FROM nis_code_school WHERE 1 ORDER BY school ASC";
@@ -165,17 +163,23 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <div class="row">
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Percentage of ventilator on admission: <span class="text-danger">**</span> </label>
-                          <input type="number" min="0" max="100" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_pvent'];} ?>" placeholder="Enter only number 0 - 100">
+                          <input type="number" min="0" max="100" class="form-control c-input" name="txtPvent" id="txtPvent" value="<?php if($hospitalChar){ echo $hospData['hosp_pvent'];} ?>" placeholder="Enter only number 0 - 100">
+                          <small id="passwordHelpBlock" class="form-text text-muted">
+                            Enter number 0 - 100
+                          </small>
                         </div>
                         <div class="form-group col-12 col-sm-6">
                           <label for="">Percentage of dialysis on admission: <span class="text-danger">**</span> </label>
-                          <input type="number" min="0" max="100"  class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_pdian'];} ?>" placeholder="Enter only number 0 - 100">
+                          <input type="number" min="0" max="100"  class="form-control c-input" name="txtPdian" id="txtPdian" value="<?php if($hospitalChar){ echo $hospData['hosp_pdian'];} ?>" placeholder="Enter only number 0 - 100">
+                          <small id="passwordHelpBlock" class="form-text text-muted">
+                            Enter number 0 - 100
+                          </small>
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-12 text-center pt-3">
-                          <button type="button" class="btn btn-primary" name="button">Update</button>
+                        <div class="col-12 text-right pt-3">
+                          <button type="button" class="btn btn-primary" name="button" onclick="hosp_profile.saveHospchar()">Record <i class="fas fa-chevron-right text-white"></i></button>
                         </div>
                       </div>
 
@@ -184,7 +188,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 </div>
                 <!-- .carc -->
               </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
                 <h6 class="text-white">Update history</h6>
                 <div class="card">
                   <div class="card-body">
@@ -236,7 +240,13 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                               ?>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button"><i class="fas fa-trash text-white"></i></button>
+                                  <?php
+                                  if($rowData['hosp_status'] == 0){
+                                    ?>
+                                    <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button"><i class="fas fa-trash text-danger"></i></button>
+                                    <?php
+                                  }
+                                  ?>
                                 </td>
                                 <td><?php echo $rowData['hosp_udatetime']; ?></td>
                                 <td><?php echo $rowData['hosp_hospname']; ?></td>
@@ -273,6 +283,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/moment/min/moment.min.js"></script>
   <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -283,6 +295,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/function.js"></script>
   <script src="../../assets/custom/js/authen.js"></script>
   <script src="../../assets/custom/js/authen-init.js"></script>
+  <script src="../../assets/custom/js/hospital-profile.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
@@ -290,6 +303,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
       $("#table-1").dataTable({
         "columnDefs": [
+          { "width": "50px", "targets": 0 },
           { "sortable": false, "targets": [2,3] }
         ]
       });

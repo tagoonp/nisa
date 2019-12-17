@@ -8,14 +8,14 @@ var authen = {
                   window.localStorage.setItem(conf.prefix + 'role', i.role)
                   window.location = './' + i.role + '/index?uid=' + i.uid + '&role=' + i.role
                 })
-                // event.preventDefault();
-                // event.stopPropagation();
+                event.preventDefault();
+                event.stopPropagation();
               }else{
                 alert('Invalid user nis_useraccount')
               }
             })
 
-    // event.preventDefault();
-    // event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
   }
 }
