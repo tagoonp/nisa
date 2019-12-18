@@ -14,10 +14,129 @@ if(
 
 $stage = mysqli_real_escape_string($conn, $_GET['stage']);
 
+if($stage == 'deleteDeviceinfection'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['rid']))
+  ){
+    echo "string";
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+
+  $strSQL = "DELETE FROM nis_neo_dai WHERE nai_id = '$rid' AND nai_uid = '$uid'";
+  $result = mysqli_query($conn, $strSQL);
+  if($result){ echo "Y"; }else{ echo $strSQL;}
+  mysqli_close($conn);
+  die();
+}
+
+if($stage == 'deleteDevicewelling'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['rid']))
+  ){
+    echo "string";
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+
+  $strSQL = "DELETE FROM nis_neo_deviceday WHERE ndw_id = '$rid' AND ndw_uid = '$uid'";
+  $result = mysqli_query($conn, $strSQL);
+  if($result){ echo "Y"; }else{ echo $strSQL;}
+  mysqli_close($conn);
+  die();
+}
+
+if($stage == 'saveDeviceInfection'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['serial'])) ||
+      (!isset($_POST['rid'])) ||
+      (!isset($_POST['ddate'])) ||
+      (!isset($_POST['los'])) ||
+      (!isset($_POST['site'])) ||
+      (!isset($_POST['pathogen']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+  $serial = mysqli_real_escape_string($conn, $_POST['serial']);
+  $ddate = mysqli_real_escape_string($conn, $_POST['ddate']);
+  $los = mysqli_real_escape_string($conn, $_POST['los']);
+  $site = mysqli_real_escape_string($conn, $_POST['site']);
+  $pathogen = mysqli_real_escape_string($conn, $_POST['pathogen']);
+
+  // Check Monthly
+  $b = explode('-', $ddate);
+  $month = intval($b[1]);
+  if(($month > 0) && ($month <= 2)){ $bimonth = 1; }
+  else if(($month > 2) && ($month <= 4)){ $bimonth = 2; }
+  else if(($month > 4) && ($month <= 6)){ $bimonth = 3; }
+  else if(($month > 6) && ($month <= 8)){ $bimonth = 4; }
+  else if(($month > 8) && ($month <= 10)){ $bimonth = 5; }
+  else if(($month > 10) && ($month <= 12)){ $bimonth = 6; }
+
+  if(($month > 0) && ($month <= 3)){ $quarter = 1; }
+  else if(($month > 3) && ($month <= 6)){ $quarter = 2; }
+  else if(($month > 6) && ($month <= 9)){ $quarter = 3; }
+  else if(($month > 7) && ($month <= 12)){ $quarter = 4; }
+
+  if(($month > 0) && ($month <= 4)){ $trimester = 1; }
+  else if(($month > 4) && ($month <= 8)){ $trimester = 2; }
+  else if(($month > 8) && ($month <= 12)){ $trimester = 3; }
+
+  if(($month > 0) && ($month <= 6)){ $semiannual = 1; }
+  else if(($month > 6) && ($month <= 12)){ $semiannual = 2; }
+
+  $annual = $b[0];
+
+  // Check bw
+  $bw = 0;
+  $bw_cat = 0;
+
+  $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_serial = '$serial' AND neo_uid = '$uid'";
+  $result = mysqli_query($conn, $strSQL);
+
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    $data = mysqli_fetch_assoc($result);
+    $bw = $data['neo_bw'];
+    $bw_cat = $data['neo_bw_cat'];
+  }
+
+
+  $strSQL = "INSERT INTO nis_neo_dai
+              (
+                nai_doe, nai_site, nai_bw, nai_bwcat, nai_los,
+                nai_pathogen, nai_monthly, nai_bimonth, nai_quarter, nai_trimeater,
+                nai_semiannual, nai_annual, nai_udatetime, nai_neo_serial, nai_uid
+              )
+              VALUES
+              (
+                '$ddate', '$site', '$bw', '$bw_cat', '$los',
+                '$pathogen', '$month', '$bimonth', '$quarter', '$trimester',
+                '$semiannual', '$annual', '$sysdatetime', '$serial', '$uid'
+              )
+            ";
+  $resultInsert = mysqli_query($conn, $strSQL);
+  if($resultInsert){ echo "Y"; }
+
+}
+
 if($stage == 'saveDeviceIndwelling'){
   if(
       (!isset($_POST['uid'])) ||
       (!isset($_POST['serial'])) ||
+      (!isset($_POST['rid'])) ||
       (!isset($_POST['ddate'])) ||
       (!isset($_POST['los'])) ||
       (!isset($_POST['cath'])) ||
@@ -28,15 +147,197 @@ if($stage == 'saveDeviceIndwelling'){
   }
 
   $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
   $serial = mysqli_real_escape_string($conn, $_POST['serial']);
   $ddate = mysqli_real_escape_string($conn, $_POST['ddate']);
   $los = mysqli_real_escape_string($conn, $_POST['los']);
   $cath = mysqli_real_escape_string($conn, $_POST['cath']);
   $vent = mysqli_real_escape_string($conn, $_POST['vent']);
 
-  $strSQL = "INSERT INTO nis_deviceday
-              (dd_uid, dd_serial_no, dd_ddate, dd_device, dd_duration)
-            "
+  // Check Monthly
+  $b = explode('-', $ddate);
+  $month = intval($b[1]);
+  if(($month > 0) && ($month <= 2)){ $bimonth = 1; }
+  else if(($month > 2) && ($month <= 4)){ $bimonth = 2; }
+  else if(($month > 4) && ($month <= 6)){ $bimonth = 3; }
+  else if(($month > 6) && ($month <= 8)){ $bimonth = 4; }
+  else if(($month > 8) && ($month <= 10)){ $bimonth = 5; }
+  else if(($month > 10) && ($month <= 12)){ $bimonth = 6; }
+
+  if(($month > 0) && ($month <= 3)){ $quarter = 1; }
+  else if(($month > 3) && ($month <= 6)){ $quarter = 2; }
+  else if(($month > 6) && ($month <= 9)){ $quarter = 3; }
+  else if(($month > 7) && ($month <= 12)){ $quarter = 4; }
+
+  if(($month > 0) && ($month <= 4)){ $trimester = 1; }
+  else if(($month > 4) && ($month <= 8)){ $trimester = 2; }
+  else if(($month > 8) && ($month <= 12)){ $trimester = 3; }
+
+  if(($month > 0) && ($month <= 6)){ $semiannual = 1; }
+  else if(($month > 6) && ($month <= 12)){ $semiannual = 2; }
+
+  $annual = $b[0];
+
+  // Check bw
+  $bw = 0;
+  $bw_cat = 0;
+
+  // $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_id = '$id' AND neo_serial = '$serial' AND neo_uid = '$uid'";
+  $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_serial = '$serial' AND neo_uid = '$uid'";
+  $result = mysqli_query($conn, $strSQL);
+
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    $data = mysqli_fetch_assoc($result);
+    $bw = $data['neo_bw'];
+    $bw_cat = $data['neo_bw_cat'];
+  }
+
+  if($rid != ''){
+    $strSQL = "UPDATE nis_neo_deviceday
+               SET
+                ndw_ddate = '$ddate',
+                ndw_losa = '$los',
+                ndw_bw = '$bw',
+                ndw_bwcat = '$bw_cat',
+                ndw_cath = '$cath',
+                ndw_vent = '$vent',
+                ndw_monthly = '$month',
+                ndw_bimonth = '$bimonth',
+                ndw_quarter = '$quarter',
+                ndw_trimeater = '$trimester',
+                ndw_semiannual = '$semiannual',
+                ndw_annual = '$annual',
+                ndw_udatetime = '$sysdatetime'
+              WHERE
+                ndw_id = '$rid' AND ndw_neo_serial = '$serial' AND ndw_uid = '$uid'
+              ";
+    $resultUpdate = mysqli_query($conn, $strSQL);
+    if($resultUpdate){ echo "Y"; }
+  }else{
+    $strSQL = "INSERT INTO nis_neo_deviceday
+                (
+                  ndw_ddate, ndw_losa, ndw_bw, ndw_bwcat, ndw_cath,
+                  ndw_vent, ndw_monthly, ndw_bimonth, ndw_quarter, ndw_trimeater,
+                  ndw_semiannual, ndw_annual, ndw_udatetime, ndw_neo_serial, ndw_uid
+                )
+                VALUES
+                (
+                  '$ddate', '$los', '$bw', '$bw_cat', '$cath',
+                  '$vent', '$month', '$bimonth', '$quarter', '$trimester',
+                  '$semiannual', '$annual', '$sysdatetime', '$serial', '$uid'
+                )
+              ";
+    $resultInsert = mysqli_query($conn, $strSQL);
+    if($resultInsert){ echo "Y"; }
+  }
+
+  mysqli_close($conn);
+  die();
+
+}
+
+if($stage == 'updateDeviceIndwelling'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['serial'])) ||
+      (!isset($_POST['rid'])) ||
+      (!isset($_POST['ddate'])) ||
+      (!isset($_POST['los'])) ||
+      (!isset($_POST['cath'])) ||
+      (!isset($_POST['vent']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+  $serial = mysqli_real_escape_string($conn, $_POST['serial']);
+  $ddate = mysqli_real_escape_string($conn, $_POST['ddate']);
+  $los = mysqli_real_escape_string($conn, $_POST['los']);
+  $cath = mysqli_real_escape_string($conn, $_POST['cath']);
+  $vent = mysqli_real_escape_string($conn, $_POST['vent']);
+
+  // Check Monthly
+  $b = explode('-', $ddate);
+  $month = intval($b[1]);
+  if(($month > 0) && ($month <= 2)){ $bimonth = 1; }
+  else if(($month > 2) && ($month <= 4)){ $bimonth = 2; }
+  else if(($month > 4) && ($month <= 6)){ $bimonth = 3; }
+  else if(($month > 6) && ($month <= 8)){ $bimonth = 4; }
+  else if(($month > 8) && ($month <= 10)){ $bimonth = 5; }
+  else if(($month > 10) && ($month <= 12)){ $bimonth = 6; }
+
+  if(($month > 0) && ($month <= 3)){ $quarter = 1; }
+  else if(($month > 3) && ($month <= 6)){ $quarter = 2; }
+  else if(($month > 6) && ($month <= 9)){ $quarter = 3; }
+  else if(($month > 7) && ($month <= 12)){ $quarter = 4; }
+
+  if(($month > 0) && ($month <= 4)){ $trimester = 1; }
+  else if(($month > 4) && ($month <= 8)){ $trimester = 2; }
+  else if(($month > 8) && ($month <= 12)){ $trimester = 3; }
+
+  if(($month > 0) && ($month <= 6)){ $semiannual = 1; }
+  else if(($month > 6) && ($month <= 12)){ $semiannual = 2; }
+
+  $annual = $b[0];
+
+  // Check bw
+  $bw = 0;
+  $bw_cat = 0;
+
+  // $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_id = '$id' AND neo_serial = '$serial' AND neo_uid = '$uid'";
+  $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_serial = '$serial' AND neo_uid = '$uid'";
+  $result = mysqli_query($conn, $strSQL);
+
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    $data = mysqli_fetch_assoc($result);
+    $bw = $data['neo_bw'];
+    $bw_cat = $data['neo_bw_cat'];
+  }
+
+  if($rid != ''){
+    $strSQL = "UPDATE nis_neo_deviceday
+               SET
+                ndw_ddate = '$ddate',
+                ndw_losa = '$los',
+                ndw_bw = '$bw',
+                ndw_bwcat = '$bw_cat',
+                ndw_cath = '$cath',
+                ndw_vent = '$vent',
+                ndw_monthly = '$month',
+                ndw_bimonth = '$bimonth',
+                ndw_quarter = '$quarter',
+                ndw_trimeater = '$trimester',
+                ndw_semiannual = '$semiannual',
+                ndw_annual = '$annual',
+                ndw_udatetime = '$sysdatetime'
+              WHERE
+                ndw_id = '$rid' AND ndw_neo_serial = '$serial' AND ndw_uid = '$uid'
+              ";
+    $resultUpdate = mysqli_query($conn, $strSQL);
+    if($resultUpdate){ echo "Y"; }
+  }else{
+    $strSQL = "INSERT INTO nis_neo_deviceday
+                (
+                  ndw_ddate, ndw_losa, ndw_bw, ndw_bwcat, ndw_cath,
+                  ndw_vent, ndw_monthly, ndw_bimonth, ndw_quarter, ndw_trimeater,
+                  ndw_semiannual, ndw_annual, ndw_udatetime, ndw_neo_serial, ndw_uid
+                )
+                VALUES
+                (
+                  '$ddate', '$los', '$bw', '$bw_cat', '$cath',
+                  '$vent', '$month', '$bimonth', '$quarter', '$trimester',
+                  '$semiannual', '$annual', '$sysdatetime', '$serial', '$uid'
+                )
+              ";
+    $resultInsert = mysqli_query($conn, $strSQL);
+    if($resultInsert){ echo "Y"; }
+  }
+
+  mysqli_close($conn);
+  die();
+
 }
 
 if($stage == 'delete_patient'){
@@ -61,6 +362,70 @@ if($stage == 'delete_patient'){
 
 }
 
+if($stage == 'info2_byid'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['rid']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+
+  $strSQL = "SELECT * FROM nis_neonate_patient a LEFT JOIN nis_neo_dai b ON a.neo_serial = b.nai_neo_serial
+            WHERE a.neo_uid = '$uid' AND b.nai_id = '$rid'";
+  $result = mysqli_query($conn, $strSQL);
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    while ($row = mysqli_fetch_array($result)) {
+      $buf = array();
+      foreach ($row as $key => $value) {
+          if(!is_int($key)){
+            $buf[$key] = $value;
+          }
+      }
+      $return[] = $buf;
+      echo json_encode($return);
+    }
+  }
+
+  mysqli_close($conn);
+  die();
+}
+
+if($stage == 'info_byid'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['rid']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $rid = mysqli_real_escape_string($conn, $_POST['rid']);
+
+  $strSQL = "SELECT * FROM nis_neonate_patient a LEFT JOIN nis_neo_deviceday b ON a.neo_serial = b.ndw_neo_serial
+            WHERE a.neo_uid = '$uid' AND b.ndw_id = '$rid'";
+  $result = mysqli_query($conn, $strSQL);
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    while ($row = mysqli_fetch_array($result)) {
+      $buf = array();
+      foreach ($row as $key => $value) {
+          if(!is_int($key)){
+            $buf[$key] = $value;
+          }
+      }
+      $return[] = $buf;
+      echo json_encode($return);
+    }
+  }
+
+  mysqli_close($conn);
+  die();
+}
+
 if($stage == 'info'){
   if(
       (!isset($_POST['uid'])) ||
@@ -76,6 +441,24 @@ if($stage == 'info'){
   $strSQL = "SELECT * FROM nis_neonate_patient WHERE neo_serial = '$serial' AND neo_uid = '$uid'";
   $result = mysqli_query($conn, $strSQL);
   if(($result) && (mysqli_num_rows($result) > 0)){
+
+    // $strSQL = "SELECT * FROM nis_neo_deviceday WHERE ndw_uid = '$uid' AND ndw_neo_serial = '$serial'";
+    // $resultCheck = mysqli_query($conn, $strSQL);
+    // if(($resultCheck) && (mysqli_num_rows($resultCheck) > 0)){
+    //
+    // }else{
+    //   while ($row = mysqli_fetch_array($result)) {
+    //     $buf = array();
+    //     foreach ($row as $key => $value) {
+    //         if(!is_int($key)){
+    //           $buf[$key] = $value;
+    //         }
+    //     }
+    //     $return[] = $buf;
+    //     echo json_encode($return);
+    //   }
+    // }
+
     while ($row = mysqli_fetch_array($result)) {
       $buf = array();
       foreach ($row as $key => $value) {

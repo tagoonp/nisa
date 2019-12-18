@@ -58,7 +58,6 @@ function changeFontsize(stage){
        uid: current_user,
        current_fsize: fs
      }
-     console.log(param);
      var jxr = $.post(conf.api + 'authentication?stage=saveFontsize', param, function(){})
   }
 }

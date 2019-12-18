@@ -194,9 +194,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <table class="table table-striped table-sm" id="table-1">
                         <thead>
                           <tr>
-                            <th class="text-center">
-
-                            </th>
+                            <th class="text-center"></th>
                             <th>Serial</th>
                             <th>HN</th>
                             <th>Sex</th>
