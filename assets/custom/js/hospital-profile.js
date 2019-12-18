@@ -1,4 +1,35 @@
 var hosp_profile = {
+  delHospinfo(id){
+    var param = {
+      uid: current_user,
+      hid: id
+    }
+
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this record!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      closeOnConfirm: true
+    },
+    function(){
+      preload.show()
+      var jxr = $.post(conf.api + 'hospital-profile?stage=delete_hospinfo', param, function(){})
+                 .always(function(resp){
+                   if(resp == 'Y'){
+                     setTimeout(()=>{
+                       window.location.reload()
+                     }, 500)
+                   }else{
+                     preload.hide()
+                     swal("Error", "Can not delete record", "error")
+                   }
+                 })
+    });
+  },
   saveHospchar(){
     $('.form-control').removeClass('is-invalid')
     $check = 0
@@ -58,7 +89,28 @@ var hosp_profile = {
       pdian: $('#txtPdian').val()
     }
 
-    var kx4 = $.post(conf.api + 'hospital-profile?stage=get_ward', param, function(){}, 'json')
+    preload.show()
+
+    var kx4 = $.post(conf.api + 'hospital-profile?stage=set_hospital', param, function(){})
+               .always(function(resp){
+                 if(resp == 'Y'){
+                   preload.hide()
+                   swal({
+                     title: "Success",
+                     text: "Click OK to reload hospital info.",
+                     type: "success",
+                     showCancelButton: false,
+                     confirmButtonColor: "#DD6B55",
+                     confirmButtonText: "OK",
+                     closeOnConfirm: false },
+                   function(){
+                     window.location.reload()
+                   });
+                 }else{
+                   preload.hide()
+                   swal("Error", "Can not record", "error")
+                 }
+               })
 
   },
   delWard(id){

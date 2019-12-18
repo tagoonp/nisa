@@ -14,6 +14,117 @@ if(
 
 $stage = mysqli_real_escape_string($conn, $_GET['stage']);
 
+if($stage == 'delete_hospinfo'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['hid']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $hid = mysqli_real_escape_string($conn, $_POST['hid']);
+
+  $strSQL = "DELETE FROM nis_hospchar WHERE hosp_id = '$hid' AND hosp_uid = '$uid' ";
+  $result = mysqli_query($conn, $strSQL);
+  if($result){
+    echo "Y";
+  }
+  mysqli_close($conn);
+  die();
+}
+
+if($stage == 'set_hospital'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['name'])) ||
+      (!isset($_POST['address'])) ||
+      (!isset($_POST['country'])) ||
+      (!isset($_POST['bedsize'])) ||
+      (!isset($_POST['type'])) ||
+      (!isset($_POST['school'])) ||
+      (!isset($_POST['pvent'])) ||
+      (!isset($_POST['pdian']))
+  ){
+      mysqli_close($conn);
+      die();
+  }
+
+  $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+  $name = mysqli_real_escape_string($conn, $_POST['name']);
+  $address = mysqli_real_escape_string($conn, $_POST['address']);
+  $country = mysqli_real_escape_string($conn, $_POST['country']);
+  $bedsize = mysqli_real_escape_string($conn, $_POST['bedsize']);
+  $type = mysqli_real_escape_string($conn, $_POST['type']);
+  $school = mysqli_real_escape_string($conn, $_POST['school']);
+  $pvent = mysqli_real_escape_string($conn, $_POST['pvent']);
+  $pdian = mysqli_real_escape_string($conn, $_POST['pdian']);
+
+  $strSQL = "UPDATE nis_hospchar SET hosp_status = '0' WHERE hosp_uid = '$uid'";
+  $resultUpdate = mysqli_query($conn, $strSQL);
+
+  if($resultUpdate){
+
+    $strSQL = "SELECT CallingCode FROM nis_country WHERE CountryID = '$country'";
+    $resultCountry = mysqli_query($conn, $strSQL);
+    $czip = '';
+    if($resultCountry){
+      $data = mysqli_fetch_assoc($resultCountry);
+      $czip = $data['CallingCode'];
+    }
+
+    $schUti = 0;
+    $schBsi = 0;
+    $schVae = 0;
+    $strSQL = "SELECT * FROM nis_code_school WHERE sc_code = '$school'";
+    $resultSchool = mysqli_query($conn, $strSQL);
+    if($resultSchool){
+      $data = mysqli_fetch_assoc($resultSchool);
+      $schUti = $data['bSchoolUTI'];
+      $schBsi = $data['bSchoolBSI'];
+      $schVae = $data['bSchoolVAE'];
+    }
+
+    $hUti = 0;
+    $hBsi = 0;
+    $hVae = 0;
+    $strSQL = "SELECT * FROM nis_code_hosptype WHERE ht_code = '$type'";
+    $resultType = mysqli_query($conn, $strSQL);
+    if($resultType){
+      $data = mysqli_fetch_assoc($resultType);
+      $hUti = $data['bHospTypeUTI'];
+      $hBsi = $data['bHospTypeBSI'];
+      $hVae = $data['bHospTypeVAE'];
+    }
+
+    $strSQL = "INSERT INTO nis_hospchar
+              (
+                hosp_udatetime, hosp_hospname, hosp_address, hosp_country, hosp_zipcode,
+                hosp_bedsize, hosp_hosptype, hosp_school, hosp_pvent, hosp_pdian,
+                hosp_bHosTypeUTI, hosp_bHosTypeBSI, hosp_bHosTypeVAE, hosp_bSchoolUTI, hosp_bSchoolBSI,
+                hosp_bSchoolVAE, hosp_uid
+              )
+              VALUES
+              (
+                '$sysdatetime', '$name', '$address', '$country', '$czip',
+                '$bedsize', '$type', '$school', '$pvent', '$pdian',
+                '$hUti', '$hBsi', '$hVae', '$schUti', '$schBsi',
+                '$schVae', '$uid'
+              )
+              ";
+    $resultInsert = mysqli_query($conn, $strSQL);
+    if($resultInsert){
+      echo "Y";
+    }else{
+      echo "N";
+    }
+  }
+
+  mysqli_close($conn);
+  die();
+}
+
 if($stage == 'delete_ward'){
   if(
       (!isset($_POST['uid'])) ||

@@ -25,6 +25,9 @@ $resultHospchar = mysqli_query($conn, $strSQL);
 if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   $hospitalChar = true;
   $hospData = mysqli_fetch_assoc($resultHospchar);
+}else{
+  header('Location: neonate?uid='.$uid.'&role='.$role);
+  die();
 }
 
 ?>
@@ -38,12 +41,14 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
-
+  <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
   <link rel="stylesheet" href="../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../node_modules/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../../node_modules/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="../../node_modules/selectric/public/selectric.css">
 
   <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -78,6 +83,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               <!-- <img src="../../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
               <h1 class="text-white">Neonate :: Append data</h1>
             </div>
+
             <div class="row">
               <div class="col-12 mb-3">
                 <button type="button" class="btn btn-primary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate?uid=<?php echo $uid;?>&role=<?php echo $role;?>')"><i class="fas fa-home text-white"></i></button>
@@ -91,64 +97,70 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 <h6 class="text-white">Hospital characteristic</h6>
                 <div class="card">
                   <div class="card-body">
-                    <form class="" onsubmit="return false;">
+                    <form class="neoPatienForm" onsubmit="return false;">
                       <div class="form-group">
                         <label for="">Serial No.: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_hospname'];} ?>" placeholder="Hospital name ...">
+                        <input type="text" class="form-control c-input" name="txtSerial" id="txtSerial"  placeholder="Enter serial no. ..." autofocus tabindex="1">
                       </div>
                       <div class="row">
                         <div class="form-group col-6">
-                          <label for="">HN: <span class="text-danger">**</span> </label>
-                          <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_address'];} ?>" placeholder="Address ...">
+                          <label for="">HN:  </label>
+                          <input type="text" class="form-control c-input" name="txtHn" id="txtHn" placeholder="Enter HN ..." tabindex="2">
                         </div>
                         <div class="form-group col-6">
                           <label for="">Gender: <span class="text-danger">**</span> </label>
-                          <select class="form-control c-input" name="">
+                          <select class="form-control c-input" name="txtGender" id="txtGender" tabindex="3">
                             <option value="">-- Choose gender --</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                           </select>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col-6">
-                          <label for="">GA: <span class="text-danger">**</span> </label>
-                          <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_address'];} ?>" placeholder="Enter GA ...">
+                          <label for="">GA (weeks):  </label>
+                          <input type="number" min="1" max="50" class="form-control c-input" name="txtGa" id="txtGa" placeholder="Enter GA ..." tabindex="4">
                         </div>
                         <div class="form-group col-6">
-                          <label for="">BW: <span class="text-danger">**</span> </label>
-                          <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Enter birth weight ...">
+                          <label for="">BW (grams): <span class="text-danger">**</span> </label>
+                          <input type="number" min="100" class="form-control c-input" name="txtBw" id="txtBw" placeholder="Enter birth weight ..." tabindex="5">
+                          <small id="passwordHelpInline" class="text-muted">
+                            Must be greater than 100
+                          </small>
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label for="">Admission date: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Enter birth weight ...">
+                        <input type="text" class="form-control c-input datepicker" name="txtAdm" id="txtAdm"  tabindex="6">
                       </div>
 
                       <div class="form-group">
                         <label for="">Discharge date: <span class="text-danger">**</span> </label>
-                        <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Enter birth weight ...">
+                        <input type="text" class="form-control c-input datepicker" name="txtDisc" id="txtDisc"  tabindex="7">
                       </div>
 
                       <div class="row">
                         <div class="form-group col-6">
                           <label for="">Die in hospital: <span class="text-danger">**</span> </label>
-                          <select class="form-control c-input" name="">
-                            <option value="N">No</option>
+                          <select class="form-control c-input" name="txtDie" id="txtDie"  tabindex="8">
+                            <option value="N" selected>No</option>
                             <option value="Y">Yes</option>
                           </select>
                         </div>
 
                         <div class="form-group col-6">
                           <label for="">Length of stay: <span class="text-danger">**</span> </label>
-                          <input type="text" class="form-control c-input" name="" value="<?php if($hospitalChar){ echo $hospData['hosp_bedsize'];} ?>" placeholder="Enter birth weight ...">
+                          <input type="number" min="0" max="30" class="form-control c-input" name="txtLos" id="txtLos" placeholder="Enter length of stay in days ..."  tabindex="9">
+                          <small id="passwordHelpInline" class="text-muted">
+                            Must be 1 - 30 days.
+                          </small>
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-12 text-right pt-3">
-                          <button type="button" class="btn btn-primary" name="button">Record <i class="fas fa-chevron-right text-white"></i></button>
+                          <button type="submit" class="btn btn-primary" name="button" >Record <i class="fas fa-chevron-right text-white"></i></button>
                         </div>
                       </div>
 
@@ -212,7 +224,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                               ?>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button"><i class="fas fa-trash text-white"></i></button>
+                                  <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
+                                  <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delPatient('<?php echo $rowData['neo_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
                                 </td>
                                 <td><?php echo $rowData['neo_serial']; ?></td>
                                 <td><?php echo $rowData['neo_hn']; ?></td>
@@ -238,6 +251,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
               </div>
             </div>
 
+
           </div>
         </div>
       </div>
@@ -252,6 +266,11 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/moment/min/moment.min.js"></script>
   <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
+  <script src="../../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="../../node_modules/select2/dist/js/select2.full.min.js"></script>
+  <script src="../../node_modules/selectric/public/jquery.selectric.min.js"></script>
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -262,17 +281,59 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/function.js"></script>
   <script src="../../assets/custom/js/authen.js"></script>
   <script src="../../assets/custom/js/authen-init.js"></script>
+  <script src="../../assets/custom/js/neonate.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
+
+      if(jQuery().daterangepicker){
+        if($('.datepicker').length){
+          $('.datepicker').daterangepicker({
+            locale: {format: 'DD-MMM-YYYY'},
+            singleDatePicker: true
+          })
+        }
+      }
+
       $('#tableZone1').niceScroll();
 
       $("#table-1").dataTable({
         "columnDefs": [
+          { "width": "100px", "targets": 0 },
           { "sortable": false, "targets": [2,3] }
         ]
       });
+
+      calculateLos()
     })
+
+    $(function(){
+      $('.neoPatienForm').submit(function(){
+        neonate.savePatient()
+      })
+
+      $('#txtAdm').change(function(){
+        calculateLos()
+      })
+      $('#txtDisc').change(function(){
+        calculateLos()
+      })
+      $('#txtSerial').keyup(function(){
+        neonate.searchPatient($('#txtSerial').val())
+      })
+    })
+
+    function setLocalData(id){
+      $("#txtSerial").val(id)
+      neonate.searchPatient(id)
+    }
+
+    function calculateLos(){
+      var start = serializeDate($('#txtAdm').val())
+      var end = serializeDate($('#txtDisc').val())
+      var _Diff = calDateDiff(start, end)
+      $('#txtLos').val(_Diff + 1)
+    }
   </script>
 </body>
 </html>

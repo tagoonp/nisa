@@ -195,7 +195,9 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                     <div class="table-responsive" id="tableZone1">
                       <?php
                       $columData = array();
-                      $strSQL = "SELECT * FROM nis_hospchar WHERE hosp_uid = '$uid' AND hosp_deletestatus = '0' ORDER BY hosp_udatetime DESC";
+                      $strSQL = "SELECT * FROM nis_hospchar a LEFT JOIN nis_code_hosptype b ON a.hosp_hosptype = b.ht_code
+                                 LEFT JOIN nis_code_school c ON a.hosp_school = c.sc_code
+                                 WHERE a.hosp_uid = '$uid' AND a.hosp_deletestatus = '0' ORDER BY a.hosp_udatetime DESC";
                       $resultHosphistory = mysqli_query($conn, $strSQL);
                       if(($resultHosphistory) && (mysqli_num_rows($resultHosphistory) > 0)){
                         while ($row = mysqli_fetch_array($resultHosphistory)) {
@@ -243,16 +245,16 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                                   <?php
                                   if($rowData['hosp_status'] == 0){
                                     ?>
-                                    <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button"><i class="fas fa-trash text-danger"></i></button>
+                                    <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="hosp_profile.delHospinfo('<?php echo $rowData['hosp_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
                                     <?php
                                   }
                                   ?>
                                 </td>
-                                <td><?php echo $rowData['hosp_udatetime']; ?></td>
+                                <td><?php echo DateEnglish($rowData['hosp_udatetime'], true); ?></td>
                                 <td><?php echo $rowData['hosp_hospname']; ?></td>
                                 <td><?php echo $rowData['hosp_bedsize']; ?></td>
-                                <td><?php echo $rowData['hosp_hosptype']; ?></td>
-                                <td><?php echo $rowData['hosp_school']; ?></td>
+                                <td><?php echo $rowData['hosptype']; ?></td>
+                                <td><?php echo $rowData['school']; ?></td>
                                 <td><?php echo $rowData['hosp_pvent']; ?></td>
                                 <td><?php echo $rowData['hosp_pdian']; ?></td>
                               </tr>

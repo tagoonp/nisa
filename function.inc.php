@@ -23,6 +23,26 @@ function DateThai($strDate, $dateonly){
     }
 }
 
+function DateEnglish($strDate, $dateonly){
+    if($strDate != NULL){
+      $strYear = date("Y",strtotime($strDate))+543;
+  		$strMonth= date("n",strtotime($strDate));
+  		$strDay= date("j",strtotime($strDate));
+  		$strHour= date("H",strtotime($strDate));
+  		$strMinute= date("i",strtotime($strDate));
+  		$strSeconds= date("s",strtotime($strDate));
+  		$strMonthCut = Array("","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+  		$strMonthThai=$strMonthCut[$strMonth];
+      if($dateonly){
+        return "$strDay $strMonthThai $strYear";
+      }else{
+        return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
+      }
+    }else{
+      return "NA";
+    }
+}
+
 function DateDiff($start, $end, $unit){
   if($unit == 'day'){
     $date1 = strtotime($start." 00:00:00");

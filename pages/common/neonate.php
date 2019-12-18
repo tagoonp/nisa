@@ -17,6 +17,15 @@ if(
 $uid = mysqli_real_escape_string($conn, $_GET['uid']);
 $role = mysqli_real_escape_string($conn, $_GET['role']);
 
+$hospitalChar = false;
+$hospData = '';
+$strSQL = "SELECT * FROM nis_hospchar WHERE hosp_uid = '$uid' AND hosp_deletestatus = '0' AND hosp_status = '1' ORDER BY hosp_udatetime LIMIT 1";
+$resultHospchar = mysqli_query($conn, $strSQL);
+if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
+  $hospitalChar = true;
+  $hospData = mysqli_fetch_assoc($resultHospchar);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +37,6 @@ $role = mysqli_real_escape_string($conn, $_GET['role']);
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
-
-  <!-- Template CSS -->
-  <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
-  <!-- <link rel="stylesheet" href="../../assets/css/components.css"> -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
   <style media="screen">
@@ -56,20 +61,34 @@ $role = mysqli_real_escape_string($conn, $_GET['role']);
               <h1 class="text-white">NISA</h1>
             </div>
 
-            <div class="row">
-              <div class="col-6 col-sm-3 mb-4">
-                <img src="../../img/mainmenu.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./index?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
+            <?php
+            if(!$hospitalChar){
+              ?>
+              <div class="alert alert-danger">
+                Please complete hospital characteristic first. <a href="hospital?uid=<?php echo $uid;?>&role=<?php echo $role;?>">Clich here to update hospital profile</a>
               </div>
-              <div class="col-6 col-sm-3 mb-4">
-                <img src="../../img/appenddata.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./neonate-append?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
+              <?php
+            }else{
+              ?>
+              <div class="row">
+                <div class="col-6 col-sm-3 mb-4">
+                  <img src="../../img/mainmenu.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./index?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
+                </div>
+                <div class="col-6 col-sm-3 mb-4">
+                  <img src="../../img/appenddata.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./neonate-append?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
+                </div>
+                <div class="col-6 col-sm-3 mb-4">
+                  <img src="../../img/analysis.png" alt="" class="img-fluid thumbnail-icon">
+                </div>
+                <div class="col-6 col-sm-3 mb-4">
+                  <img src="../../img/backup.png" alt="" class="img-fluid thumbnail-icon">
+                </div>
               </div>
-              <div class="col-6 col-sm-3 mb-4">
-                <img src="../../img/analysis.png" alt="" class="img-fluid thumbnail-icon">
-              </div>
-              <div class="col-6 col-sm-3 mb-4">
-                <img src="../../img/backup.png" alt="" class="img-fluid thumbnail-icon">
-              </div>
-            </div>
+              <?php
+            }
+            ?>
+
+
 
           </div>
         </div>

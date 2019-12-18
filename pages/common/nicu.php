@@ -161,7 +161,15 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                               ?>
                               <tr>
                                 <td>
-                                  <button type="button" class="btn btn-danger btn-sm btn-icon" name="button" onclick="hosp_profile.delete_nicu('<?php echo $rowData['hos_id'];?>')"><i class="fas fa-trash text-white"></i></button>
+                                  <?php
+                                  if($rowData['hos_use_status'] == 'Y'){
+                                    
+                                  }else{
+                                    ?>
+                                    <button type="button" class="btn btn-danger- btn-sm btn-icon" name="button" onclick="hosp_profile.delete_nicu('<?php echo $rowData['hos_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
+                                    <?php
+                                  }
+                                  ?>
                                 </td>
                                 <td><?php echo $rowData['hos_udatetime']; ?></td>
                                 <td><?php echo $rowData['hos_nicu_level']; ?></td>
