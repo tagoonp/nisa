@@ -94,7 +94,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
             </div>
             <div class="row">
               <div class="col-12 col-sm-4">
-                <h6 class="text-white">Hospital characteristic</h6>
+                <h6 class="text-white">Patient characteristic</h6>
                 <div class="card">
                   <div class="card-body">
                     <form class="neoPatienForm" onsubmit="return false;">
@@ -108,7 +108,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                           <input type="text" class="form-control c-input" name="txtHn" id="txtHn" placeholder="Enter HN ..." tabindex="2">
                         </div>
                         <div class="form-group col-6">
-                          <label for="">Gender: <span class="text-danger">**</span> </label>
+                          <label for="">Gender: </label>
                           <select class="form-control c-input" name="txtGender" id="txtGender" tabindex="3">
                             <option value="">-- Choose gender --</option>
                             <option value="Male">Male</option>
@@ -136,7 +136,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       </div>
 
                       <div class="form-group">
-                        <label for="">Discharge date: <span class="text-danger">**</span> </label>
+                        <label for="">Discharge date: </label>
                         <input type="text" class="form-control c-input datepicker" name="txtDisc" id="txtDisc"  tabindex="7">
                       </div>
 
@@ -150,7 +150,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         </div>
 
                         <div class="form-group col-6">
-                          <label for="">Length of stay: <span class="text-danger">**</span> </label>
+                          <label for="">Length of stay: </label>
                           <input type="number" min="0" max="30" class="form-control c-input" name="txtLos" id="txtLos" placeholder="Enter length of stay in days ..."  tabindex="9">
                           <small id="passwordHelpInline" class="text-muted">
                             Must be 1 - 30 days.
@@ -285,13 +285,36 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
     $(document).ready(function(){
 
       if(jQuery().daterangepicker){
-        if($('.datepicker').length){
-          $('.datepicker').daterangepicker({
+        if($('#txtAdm').length){
+          $('#txtAdm').daterangepicker({
             locale: {format: 'DD-MMM-YYYY'},
             singleDatePicker: true
           })
         }
+
+        if($('#txtDisc').length){
+          $('#txtDisc').daterangepicker({
+            locale: {format: 'DD-MMM-YYYY'},
+            singleDatePicker: true,
+            autoUpdateInput: false
+          })
+
+          $('#txtDisc').on('apply.daterangepicker', function(ev, picker) {
+             $(this).val(picker.startDate.format('DD-MMM-YYYY'))
+             calculateLos()
+          });
+
+          $('#txtDisc').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+              calculateLos()
+          });
+
+        }
       }
+
+
+
+      // $('#').data('daterangepicker').setStartDate('');
 
       $('#tableZone1').niceScroll();
 

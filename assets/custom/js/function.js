@@ -30,6 +30,7 @@ function setFontsize(){
 
                     $('h1').css('font-size', '38px');
                     $('small').css('font-size', (resp * 0.8) + 'px');
+                    $('#chartPreload').css('font-size', '100px');
                   }
                 })
   }

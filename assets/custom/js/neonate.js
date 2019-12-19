@@ -878,20 +878,8 @@ var neonate = {
       $('#txtBw').addClass('is-invalid'); $check++
     }
 
-    if($('#txtGender').val() == ''){
-      $('#txtGender').addClass('is-invalid'); $check++
-    }
-
     if($('#txtAdm').val() == ''){
       $('#txtAdm').addClass('is-invalid'); $check++
-    }
-
-    if($('#txtDisc').val() == ''){
-      $('#txtDisc').addClass('is-invalid'); $check++
-    }
-
-    if($('#txtLos').val() == ''){
-      $('#txtLos').addClass('is-invalid'); $check++
     }
 
     if($check != 0){
