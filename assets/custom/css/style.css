@@ -14,17 +14,25 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 700;
 }
 
+.dn{ display: none ;}
+
 .c-input{
     border: solid;
     /* border-radius: 0px; */
     border-width: 1px;
     border-color: #d6d6d6;
-    background: #f0f0f1;
+    background: #f0f0f1  !important;
     /* background: none; */
     font-size: 24px;
     color: #000;
 }
-
+.select2-container .select2-selection--multiple, .select2-container .select2-selection--single{
+  background: #f0f0f1  !important;
+  border: solid;
+  /* border-radius: 0px; */
+  border-width: 1px;
+  border-color: #d6d6d6   !important;
+}
 .col-form-label{
   font-weight: 600;
 }

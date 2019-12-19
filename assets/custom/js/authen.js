@@ -17,5 +17,10 @@ var authen = {
 
     event.preventDefault();
     event.stopPropagation();
+  },
+  logout(){
+    window.localStorage.removeItem(conf.prefix + 'uid')
+    window.localStorage.removeItem(conf.prefix + 'role')
+    window.location = '../index'
   }
 }
