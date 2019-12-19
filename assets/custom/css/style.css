@@ -17,13 +17,28 @@ h1, h2, h3, h4, h5, h6{
 .c-input{
     border: solid;
     /* border-radius: 0px; */
-    border-width: 0px 0px 0px 0px;
-    border-color: rgb(0, 103, 223);
-    background: rgb(187, 201, 217);
+    border-width: 1px;
+    border-color: #d6d6d6;
+    background: #f0f0f1;
     /* background: none; */
     font-size: 24px;
     color: #000;
 }
+
+.col-form-label{
+  font-weight: 600;
+}
+.c-input-2{
+    border: solid;
+    border-radius: 0px;
+    border-width: 0px 0px 1px 0px !important;
+    border-color: #d6d6d6;
+    /* background: #ffffff; */
+    background: none !important;
+    font-size: 24px;
+    color: #000;
+}
+
 
 .thumbnail-icon{
   transition: .2s;

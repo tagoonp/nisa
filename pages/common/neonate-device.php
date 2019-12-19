@@ -113,66 +113,79 @@ if(isset($_GET['active_tab'])){
                     <div class="tab-content" id="myTabContent2">
                       <div class="tab-pane fade <?php if($active_tab == 1){ echo "show active"; } ?>" id="home3" role="tabpanel" aria-labelledby="home-tab3">
                         <div class="row">
-                          <div class="col-12 col-sm-4">
+                          <div class="col-12 col-sm-5">
                             <form class="deviceForm1" onsubmit="return false;">
                               <div class="form-group" style="display: none;">
                                 <label for="">Record ID.: <span class="text-danger">**</span> </label>
                                 <input type="text" class="form-control c-input" name="txtRecord1" id="txtRecord1" readonly>
                               </div>
                               <div class="form-group">
-                                <label for="">Serial No.: <span class="text-danger">**</span> </label>
+                                <label for="" class="col-form-label">Serial No.: <span class="text-danger">**</span> </label>
                                 <input type="text" class="form-control c-input" name="txtSerial1" id="txtSerial1" placeholder="Enter serial no ..." autofocus>
                               </div>
-                              <div class="row">
-                                <div class="form-group col-12">
-                                  <input type="text" class="form-control c-input txtHn" name="txtHn1" id="txtHn1" placeholder="HN" readonly>
-                                </div>
-
-                              </div>
-                              <div class="row">
-                                <div class="form-group col-4">
-                                  <input type="text" class="form-control c-input txtGender" name="" value="" placeholder="Gender" readonly>
-                                </div>
-                                <div class="form-group col-4">
-                                  <input type="text" class="form-control c-input txtGa" name="" value="" placeholder="GA" readonly>
-                                </div>
-                                <div class="form-group col-4">
-                                  <input type="text" class="form-control c-input txtBw" name="" value="" placeholder="BW" readonly>
+                              <div class="form-group row mb-1">
+                                <label for="" class="col-3  col-form-label">HN</label>
+                                <div class="col-9">
+                                  <input type="text" class="form-control c-input-2 txtHn" name="txtHn1" id="txtHn1" readonly>
                                 </div>
                               </div>
 
-                              <div class="row">
-                                <div class="form-group col-6">
-                                  <input type="text" class="form-control c-input txtAdm" name="" value="" placeholder="Admission date" readonly>
+                              <div class="form-group row mb-1">
+                                <label for="" class="col-3 pr-0 col-form-label">Gender</label>
+                                <div class="col-9">
+                                  <input type="text" class="form-control c-input-2 txtGender" name="" value="" placeholder="" readonly>
+                                </div>
+                              </div>
+
+                              <div class="form-group row mb-1">
+                                <label for="" class="col-2 col-form-label">GA</label>
+                                <div class="col-4">
+                                  <input type="text" class="form-control c-input-2 txtGa" name="" value="" placeholder="" readonly>
                                 </div>
 
-                                <div class="form-group col-6">
-                                  <input type="text" class="form-control c-input txtDisc" name="" value="" placeholder="Discharge date" readonly>
+                                <label for="" class="col-2 col-form-label">BW</label>
+                                <div class="col-4">
+                                  <input type="text" class="form-control c-input-2 txtBw" name="" value="" placeholder="" readonly>
+                                </div>
+                              </div>
+
+                              <div class="form-group row mb-1">
+                                <label for="" class="col-4 pr-0 col-form-label">Admission date</label>
+                                <div class="col-8">
+                                  <input type="text" class="form-control c-input-2 txtAdm" name="" value="" placeholder="" readonly>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="" class="col-4 pr-0 col-form-label">Discharge date</label>
+                                <div class="col-8">
+                                  <input type="text" class="form-control c-input-2 txtDisc" name="" value="" placeholder="" readonly>
                                 </div>
                               </div>
 
                               <div class="form-group">
-                                <label for="">Date: <span class="text-danger">**</span> </label>
+                                <label for="" class="col-form-label">Date on device: <span class="text-danger">**</span> </label>
                                 <input type="text" class="form-control c-input datepicker" name="txtDate1" id="txtDate1" placeholder="" >
                               </div>
 
-                              <div class="form-group">
-                                <input type="number" min="0" max="30" class="form-control c-input" name="txtLos1" id="txtLos1" placeholder="Length of stay from admission (days)">
-                                <small id="passwordHelpInline" class="text-muted">
-                                  Must be 0 - 30 days.
-                                </small>
+                              <div class="form-group row mb-1">
+                                <label for="" class="col-4 pr-0 col-form-label pt-0">Length of stay from admission</label>
+                                <div class="col-6">
+                                  <input type="number" min="0" max="30" class="form-control c-input-2" name="txtLos1" id="txtLos1" placeholder="">
+                                </div>
+                                <label for="" class="col-2 pr-0 col-form-label">days.</label>
                               </div>
 
-                              <div class="form-group">
-                                <label for="">Device: <span class="text-danger">**</span> </label>
-                                <div class="">
+                              <div class="form-group row">
+                                <label for="" class="col-12 col-form-label">Device: <span class="text-danger">**</span> </label>
+                                <div class="col-6">
                                   <label class="custom-switch mt-2 pl-0">
                                     <input type="checkbox" name="txtCath1" id="txtCath1" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">Central line</span>
                                   </label>
                                 </div>
-                                <div class="">
+                                <div class="col-6">
                                   <label class="custom-switch mt-2 pl-0">
                                     <input type="checkbox" name="txtVent1" id="txtVent1" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
@@ -184,15 +197,15 @@ if(isset($_GET['active_tab'])){
 
                               <div class="row">
                                 <div class="col-12 text-right pt-3">
-                                  <button type="submit" class="btn btn-primary" name="button"><i class="fas fa-plus text-white"></i> Save as new record</button>
-                                  <button type="button" class="btn btn-primary" name="button" onclick="neonate.updateDeviceIndwelling()">Update <i class="fas fa-chevron-right text-white"></i></button>
+                                  <button type="submit" class="btn btn-primary float-left" name="button"><i class="fas fa-plus text-white"></i> Save as new record</button>
+                                  <button type="button" class="btn btn-primary" name="button" onclick="neonate.updateDeviceIndwelling()">Update</button>
                                 </div>
                               </div>
 
                             </form>
                           </div>
 
-                          <div class="col-12 col-sm-8">
+                          <div class="col-12 col-sm-7">
                             <div class="table-responsive" id="tableZone1">
                               <?php
                               $columData = array();
@@ -221,12 +234,6 @@ if(isset($_GET['active_tab'])){
                                     <th>Vent</th>
                                     <th>BW</th>
                                     <th>BW_cat</th>
-                                    <th>Monthly</th>
-                                    <th>Bimonth</th>
-                                    <th>Quarter</th>
-                                    <th>Trimester</th>
-                                    <th>SemiAnnual</th>
-                                    <th>Annual</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -245,12 +252,6 @@ if(isset($_GET['active_tab'])){
                                         <td><?php echo $rowData['ndw_vent']; ?></td>
                                         <td><?php echo $rowData['ndw_bw']; ?></td>
                                         <td><?php echo $rowData['ndw_bwcat']; ?></td>
-                                        <td><?php echo $rowData['ndw_monthly']; ?></td>
-                                        <td><?php echo $rowData['ndw_bimonth']; ?></td>
-                                        <td><?php echo $rowData['ndw_quarter']; ?></td>
-                                        <td><?php echo $rowData['ndw_trimeater']; ?></td>
-                                        <td><?php echo $rowData['ndw_semiannual']; ?></td>
-                                        <td><?php echo $rowData['ndw_annual']; ?></td>
                                       </tr>
                                       <?php
                                     }
