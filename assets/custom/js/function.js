@@ -28,7 +28,7 @@ function setFontsize(){
                        $(this).css('font-size', resp + 'px');
                     });
 
-                    $('h1').css('font-size', '50px');
+                    $('h1').css('font-size', '38px');
                     $('small').css('font-size', (resp * 0.8) + 'px');
                   }
                 })

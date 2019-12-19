@@ -73,7 +73,7 @@ if(isset($_GET['active_tab'])){
   <div class="tools-bar">
     <div class="row">
       <div class="col-12 col-sm-6 text-white">
-        Hello, <span class="userFullname text-primary"><i class="fas fa-sync fa-spin text-primary"></i></span> <a href="Javascript:authen.logout()" class="text-white ml-3"><i class="fas fa-sign-out-alt text-white"></i> Log out</a>
+        Hello, <span class="userFullname text-warning"><i class="fas fa-sync fa-spin text-primary"></i></span> <a href="Javascript:authen.logout()" class="text-white ml-3"><i class="fas fa-sign-out-alt text-white"></i> Log out</a>
       </div>
       <div class="col-12 col-sm-6 text-right">
         <button type="button" class="btn btn-sm- btn-primary" name="button" style="font-size: 0.7em;" onclick="changeFontsize(1)"><i class="fas fa-plus text-white"  style="font-size: 0.7em;"></i> Font Size</button>
