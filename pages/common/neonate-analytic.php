@@ -47,7 +47,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <link rel="stylesheet" href="../../node_modules/bootstrap-daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../../node_modules/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="../../node_modules/selectric/public/selectric.css">
-
+  <style> table, td {border:1px solid black; vertical-align: top;} table {border-collapse:collapse}</style>
   <!-- Template CSS -->
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
 
@@ -199,319 +199,322 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 <div class="" id="table-zone">
                   <h6 class="text-white">Table report</h6>
                   <div class="card">
-                    <div class="card-header">
-                      <h4>Table : standardized ratio of CLABSI in NICU</h4>
+                    <div class="card-header bg-primary-">
+                      <h4 class="text-white-">Table : standardized ratio of CLABSI in NICU</h4>
                     </div>
+
                     <div class="card-body p-0">
-                      <table class="table table-bordered table-sm mb-0">
-                        <thead>
-                          <tr>
-                            <th>Year</th>
-                            <th>Quarter</th>
-                            <th>Birthweight</th>
-                            <th>CLABSI</th>
-                            <th>Catheter-days</th>
-                            <th>Rate</th>
-                            <th>SIR</th>
-                            <th>LWL</th>
-                            <th>CL</th>
-                            <th>UWL</th>
-                            <th>UCL</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- <tr>
-                            <td colspan="11" class="text-center">Please filter and generate report</td>
-                          </tr> -->
-                          <tr>
-                            <td rowspan="25">2012</td>
-                            <td rowspan="6">1st</td>
-                            <td> < 751 gms. </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>751-1000 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1001-1500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1501-2500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td> >2500 gms </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
+                      <!-- <table class="" border="1"  id="tableQuarter"> -->
+                      <div class="" id="tmpDiv">
+                        <table id="tableQuarter" class="table table-bordered table-sm mb-0" border="1">
+                            <thead>
+                              <tr style="background: rgb(223, 223, 223);">
+                                <th>Year</th>
+                                <th>Quarter</th>
+                                <th>Birthweight</th>
+                                <th>CLABSI</th>
+                                <th>Catheter-days</th>
+                                <th>Rate</th>
+                                <th>SIR</th>
+                                <th>LWL</th>
+                                <th>CL</th>
+                                <th>UWL</th>
+                                <th>UCL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td rowspan="25" style="vertical-align: top;">2012</td>
+                                <td rowspan="6" style="vertical-align: top;">1st</td>
+                                <td> < 751 gms. </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>751-1000 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1001-1500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1501-2500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td> >2500 gms </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>Total</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td rowspan="6" style="vertical-align: top;">2nd</td>
+                                <td> < 751 gms. </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
 
-                          <tr>
-                            <td rowspan="6">2nd</td>
-                            <td> < 751 gms. </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>751-1000 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1001-1500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1501-2500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td> >2500 gms </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
+                              <tr>
+                                <td>751-1000 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>a</td>
+                              </tr>
+                              <tr>
+                                <td>1001-1500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>a</td>
+                              </tr>
+                              <tr>
+                                <td>1501-2500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>a</td>
+                              </tr>
+                              <tr>
+                                <td> >2500 gms </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>a</td>
+                              </tr>
+                              <tr>
+                                <td>Total</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>a</td>
+                              </tr>
 
-                          <tr>
-                            <td rowspan="6">3rd</td>
-                            <td> < 751 gms. </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>751-1000 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1001-1500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1501-2500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td> >2500 gms </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
+                              <tr>
+                                <td rowspan="6" style="vertical-align: top;">3rd</td>
+                                <td> < 751 gms. </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>751-1000 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1001-1500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1501-2500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td> >2500 gms </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>Total</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
 
-                          <tr>
-                            <td rowspan="6">4th</td>
-                            <td> < 751 gms. </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>751-1000 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1001-1500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>1501-2500 gms</td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td> >2500 gms </td>
-                            <td>v</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
-                          <tr>
-                            <td>Total</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
+                              <tr>
+                                <td rowspan="6" style="vertical-align: top;">4th</td>
+                                <td> < 751 gms. </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>751-1000 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1001-1500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>1501-2500 gms</td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td> >2500 gms </td>
+                                <td>v</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
+                              <tr>
+                                <td>Total</td>
+                                <td>d</td>
+                                <td>f</td>
+                                <td>h</td>
+                                <td>j</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                                <td>k</td>
+                              </tr>
 
-                          <tr>
-                            <td colspan="2">GRAND TOTAL</td>
-                            <td>d</td>
-                            <td>f</td>
-                            <td>h</td>
-                            <td>j</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                            <td>k</td>
-                          </tr>
+                              <tr>
+                                <td colspan="2" style="font-weight: bold;">GRAND TOTAL</td>
+                                <td style="font-weight: bold;">d</td>
+                                <td style="font-weight: bold;">f</td>
+                                <td style="font-weight: bold;">h</td>
+                                <td style="font-weight: bold;">j</td>
+                                <td style="font-weight: bold;">k</td>
+                                <td style="font-weight: bold;">k</td>
+                                <td style="font-weight: bold;">k</td>
+                                <td style="font-weight: bold;">k</td>
+                              </tr>
 
-                        </tbody>
-                      </table>
+                            </tbody>
+                          </table>
+                      </div>
                     </div>
                   </div>
+
+                  <button type="button" name="button" id="btnDownload">asd</button>
                 </div>
                 <!-- # table-zone -->
 
@@ -585,9 +588,41 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
       // });
 
       // calculateLos()
+      // $("#tableQuarter").tableExport();
     })
 
     $(function(){
+
+      $('#btnDownload').click(function(){
+        // console.log('a');
+        // $("#tableQuarter").tableExport();
+        // window.open('data:application/vnd.ms-excel,' + $('#tmpDiv').html());
+
+        var table =  $('#tmpDiv').html();
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        var is_edge = navigator.userAgent.toLowerCase().indexOf('edge') > -1;
+        if(is_edge === true) {
+           sa = true;
+          var blob = new Blob( [ table ], { type: "text/html"} );
+           // Works for Internet Explorer and Microsoft Edge
+          window.navigator.msSaveOrOpenBlob( blob, "output.xls" );
+        } else
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(table);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "DataExport.xls");
+        } else {               //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table));
+        }
+        return (sa);
+
+      })
+
       $('.neoPatienForm').submit(function(){
         neonate.savePatient()
       })
