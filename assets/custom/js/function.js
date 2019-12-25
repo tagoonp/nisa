@@ -20,7 +20,6 @@ function setFontsize(){
      var param = {
        uid: current_user
      }
-     console.log(param);
      var jxr = $.post(conf.api + 'authentication?stage=getFontsize', param, function(){})
                 .always(function(resp){
                   if((resp != '') && (resp != null)){

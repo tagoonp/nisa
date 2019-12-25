@@ -112,7 +112,7 @@ if(isset($_GET['vrow'])){
                   <div class="card-body">
 
                     <div class="row">
-                      <div class="col-6">
+                      <div class="col-5">
                         <ul class="nav nav-pills mb-4" id="myTab3" role="tablist">
                           <li class="nav-item">
                             <a class="nav-link <?php if($active_tab == 1){ echo "active"; } ?>" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true" onclick="setActivetab(1)">Device indwelling</a>
@@ -122,9 +122,9 @@ if(isset($_GET['vrow'])){
                           </li>
                         </ul>
                       </div>
-                      <div class="col-6">
+                      <div class="col-7">
                         <div class="form-group row">
-                          <label for="" class="col-2 col-form-label text-right">Rows : </label>
+                          <label for="" class="col-2 col-form-label text-left">Rows : </label>
                           <div class="col-4">
                             <select class="form-control c-input" id="txtRowFillter">
                               <option value="100" <?php if($vrow == '100'){echo "selected";} ?>>100</option>
@@ -419,27 +419,7 @@ if(isset($_GET['vrow'])){
                                     <th>Pathogen</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <?php
-                                  if(sizeof($columData) != 0){
-                                    foreach ($columData as $rowData) {
-                                      ?>
-                                      <tr>
-                                        <td>
-                                          <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData2('<?php echo $rowData['nai_id'];?>', '<?php echo $rowData['nai_neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
-                                          <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delDeviceinfection('<?php echo $rowData['nai_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
-                                        </td>
-                                        <td><?php echo $rowData['nai_neo_serial']; ?></td>
-                                        <td><?php echo $rowData['nai_doe']; ?></td>
-                                        <td><?php echo $rowData['nai_site']; ?></td>
-                                        <td><?php echo $rowData['nai_bw']; ?></td>
-                                        <td><?php echo $rowData['nai_bwcat']; ?></td>
-                                        <td><?php echo $rowData['nai_pathogen']; ?></td>
-                                      </tr>
-                                      <?php
-                                    }
-                                  }
-                                  ?>
+                                <tbody id="table-2-data">
                                 </tbody>
                               </table>
                             </div>
@@ -492,6 +472,7 @@ if(isset($_GET['vrow'])){
       $('#tableZone1').niceScroll();
 
       neonate.loadData('deviceday')
+      neonate.loadData('dai')
 
       // $("#table-1").dataTable({
       //   "columnDefs": [
