@@ -28,10 +28,11 @@ if($stage == 'gettable'){
   $uid = mysqli_real_escape_string($conn, $_POST['uid']);
   $year = mysqli_real_escape_string($conn, $_POST['year']);
   $table = mysqli_real_escape_string($conn, $_POST['table']);
+  $vrow = mysqli_real_escape_string($conn, $_POST['vrow']);
 
   if($table == 'deviceday'){
     $columData = array();
-    $strSQL = "SELECT * FROM nis_neo_deviceday WHERE ndw_uid = '$uid' AND YEAR(ndw_ddate) = '$year' ORDER BY ndw_ddate, ndw_neo_serial ASC";
+    $strSQL = "SELECT * FROM nis_neo_deviceday WHERE ndw_uid = '$uid' AND YEAR(ndw_ddate) = '$year' ORDER BY ndw_ddate, ndw_neo_serial DESC LIMIT $vrow";
     $resultHosphistory = mysqli_query($conn, $strSQL);
     if(($resultHosphistory) && (mysqli_num_rows($resultHosphistory) > 0)){
       while ($row = mysqli_fetch_array($resultHosphistory)) {
@@ -65,7 +66,7 @@ if($stage == 'gettable'){
     }
   }else if($table == 'dai'){
     $columData = array();
-    $strSQL = "SELECT * FROM nis_neo_dai WHERE nai_uid = '$uid' AND YEAR(nai_doe) = '$year' ORDER BY nai_doe, nai_neo_serial ASC";
+    $strSQL = "SELECT * FROM nis_neo_dai WHERE nai_uid = '$uid' AND YEAR(nai_doe) = '$year' ORDER BY nai_doe, nai_neo_serial DESC LIMIT $vrow";
     $resultHosphistory = mysqli_query($conn, $strSQL);
     if(($resultHosphistory) && (mysqli_num_rows($resultHosphistory) > 0)){
       while ($row = mysqli_fetch_array($resultHosphistory)) {

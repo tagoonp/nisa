@@ -39,6 +39,10 @@ if(isset($_GET['year'])){
   $year = mysqli_real_escape_string($conn, $_GET['year']);
 }
 
+$vrow = 100;
+if(isset($_GET['vrow'])){
+  $vrow = mysqli_real_escape_string($conn, $_GET['vrow']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,19 +112,29 @@ if(isset($_GET['year'])){
                   <div class="card-body">
 
                     <div class="row">
-                      <div class="col-7">
+                      <div class="col-6">
                         <ul class="nav nav-pills mb-4" id="myTab3" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link <?php if($active_tab == 1){ echo "active"; } ?>" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true">Device indwelling</a>
+                            <a class="nav-link <?php if($active_tab == 1){ echo "active"; } ?>" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true" onclick="setActivetab(1)">Device indwelling</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link <?php if($active_tab == 2){ echo "active"; } ?>" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false">Device associate infection</a>
+                            <a class="nav-link <?php if($active_tab == 2){ echo "active"; } ?>" id="profile-tab3" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile" aria-selected="false"  onclick="setActivetab(2)">Device associate infection</a>
                           </li>
                         </ul>
                       </div>
-                      <div class="col-5">
+                      <div class="col-6">
                         <div class="form-group row">
-                          <label for="" class="col-8 col-form-label text-right">Year : </label>
+                          <label for="" class="col-2 col-form-label text-right">Rows : </label>
+                          <div class="col-4">
+                            <select class="form-control c-input" id="txtRowFillter">
+                              <option value="100" <?php if($vrow == '100'){echo "selected";} ?>>100</option>
+                              <option value="1000" <?php if($vrow == '1000'){echo "selected";} ?>>1000</option>
+                              <option value="10000" <?php if($vrow == '10000'){echo "selected";} ?>>10000</option>
+                              <option value="all" <?php if($vrow == 'all'){echo "selected";} ?>>All</option>
+                            </select>
+                          </div>
+
+                          <label for="" class="col-2 col-form-label text-right">Year : </label>
                           <div class="col-4">
                             <select class="form-control c-input" id="txtYearFillter">
                               <?php
@@ -132,6 +146,7 @@ if(isset($_GET['year'])){
                               ?>
                             </select>
                           </div>
+
                         </div>
                       </div>
                     </div>
@@ -471,6 +486,8 @@ if(isset($_GET['year'])){
   <script src="../../assets/custom/js/neonate.js"></script>
 
   <script type="text/javascript">
+
+    var active_tab = 1
     $(document).ready(function(){
       $('#tableZone1').niceScroll();
 
@@ -537,8 +554,14 @@ if(isset($_GET['year'])){
       })
 
       $('#txtYearFillter').change(function(){
-         window.location = window.location.href + '&year=' + $('#txtYearFillter').val()
+         window.location = 'neonate-device?uid=' + current_user + '&role=' + current_role + '&year=' + $('#txtYearFillter').val() + '&vrow=' + $('#txtRowFillter').val()
       })
+
+      $('#txtRowFillter').change(function(){
+         window.location = 'neonate-device?uid=' + current_user + '&role=' + current_role + '&year=' + $('#txtYearFillter').val() + '&vrow=' + $('#txtRowFillter').val()
+      })
+
+
     })
 
     function calculateLoa1(){
@@ -572,6 +595,10 @@ if(isset($_GET['year'])){
       $('#txtSerial2').val(serial)
       $('#txtRecord2').val(id)
       neonate.searchPatient_byid2($('#txtRecord2').val())
+    }
+
+    function setActivetab(id){
+      active_tab = id
     }
   </script>
 </body>

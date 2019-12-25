@@ -4,6 +4,7 @@ var neonate = {
       var param = {
         uid: current_user,
         year: $('#txtYearFillter').val(),
+        vrow: $('#txtRowFillter').val(),
         table: datagroup
       }
 
@@ -12,12 +13,21 @@ var neonate = {
                    preload.hide()
                    if(resp != 'No data'){
                      $('#table-1-data').html(resp)
-                     setFontsize()
+
                      $("#table-1").dataTable({
                        "columnDefs": [
                          { "width": "100px", "targets": 0 },
                          { "sortable": false, "targets": [2,3] }
                        ]
+                     });
+                     setFontsize()
+
+                     var table = $('#table-1').DataTable();
+
+                     $("#table-1").on( 'page.dt', function () {
+                       // var info = table.page.info();
+                       // console.log( 'Showing page: '+info.page+' of '+info.pages );
+                       setFontsize()
                      });
                    }
                  })
