@@ -1,4 +1,71 @@
 var neonate = {
+  generateReport(){
+    $check = 0
+    $('.form-control').removeClass('is-invalid')
+    if($('#txtStartmonth').val() == ''){
+      $check++; $('#txtStartmonth').addClass('is-invalid')
+    }
+    if($('#txtStartyear').val() == ''){
+      $check++; $('#txtStartyear').addClass('is-invalid')
+    }
+    if($('#txtEndmonth').val() == ''){
+      $check++; $('#txtEndmonth').addClass('is-invalid')
+    }
+    if($('#txtEndyear').val() == ''){
+      $check++; $('#txtEndyear').addClass('is-invalid')
+    }
+    if($('#txtPeriod').val() == ''){
+      $check++; $('#txtPeriod').addClass('is-invalid')
+    }
+    if($check != 0){
+      swal("Warning!", "Please select date interval", "error")
+      return ;
+    }
+
+    $clabsi = 0
+    $pedvae = 0
+
+    if($('#txtSite1').is(":checked")){
+      $clabsi = 1;
+    }
+
+    if($('#txtSite2').is(":checked")){
+      $pedvae = 1;
+    }
+
+    if(($clabsi == 0) && ($pedvae == 0)){
+      swal("Warning!", "Please select site of infection", "error")
+      return ;
+    }
+
+    var param = {
+      startMonth: $('#txtStartyear').val() + '-' + $('#txtStartmonth').val(),
+      endMonth: $('#txtEndyear').val() + '-' + $('#txtEndmonth').val(),
+      period: $('#txtPeriod').val(),
+      uid: current_user
+    }
+
+    preload.show()
+
+    if($clabsi == 1){
+      var jxr = $.post(conf.api + 'neonate_report?stage=reportCLASBI', param, function(){})
+                 .always(function(resp){
+                   preload.hide()
+                   if(resp != 'No data'){
+                     $('#table-zone').removeClass('dn')
+                     $('#tablereportCLASBI').removeClass('dn')
+                     $('#tmpDivCLASBI').html(resp)
+                     setFontsize()
+                   }
+                 })
+    }
+
+    if($pedvae == 1){
+
+    }
+
+
+  },
   delDeviceOtherinfection(id){
     swal({
       title: "Are you sure?",

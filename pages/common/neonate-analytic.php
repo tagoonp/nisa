@@ -99,25 +99,32 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         <div class="form-group row">
                           <label for="" class="col-12 col-form-label">From : <span class="text-danger">*</span> </label>
                           <div class="col-4">
-                            <select class="form-control c-input" name="">
+                            <select class="form-control c-input" name="txtStartmonth" id="txtStartmonth">
                               <option value="">MM</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
+                              <option value="01">1</option>
+                              <option value="02">2</option>
+                              <option value="03">3</option>
+                              <option value="04">4</option>
+                              <option value="05">5</option>
+                              <option value="06">6</option>
+                              <option value="07">7</option>
+                              <option value="08">8</option>
+                              <option value="09">9</option>
                               <option value="10">10</option>
                               <option value="11">11</option>
                               <option value="12">12</option>
                             </select>
                           </div>
                           <div class="col-8">
-                            <select class="form-control c-input" name="">
+                            <select class="form-control c-input" name="txtStartyear" id="txtStartyear">
                               <option value="">YYYY</option>
+                              <?php
+                              for ($i = date('Y'); $i > (date('Y') - 5); $i--) {
+                                ?>
+                                <option value="<?php echo $i;?>"><?php echo $i; ?></option>
+                                <?php
+                              }
+                              ?>
                             </select>
                           </div>
                         </div>
@@ -126,25 +133,32 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         <div class="form-group row">
                           <label for="" class="col-12 col-form-label">To :  <span class="text-danger">*</span></label>
                           <div class="col-4">
-                            <select class="form-control c-input" name="">
+                            <select class="form-control c-input" name="txtEndmonth" id="txtEndmonth">
                               <option value="">MM</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
+                              <option value="01">1</option>
+                              <option value="02">2</option>
+                              <option value="03">3</option>
+                              <option value="04">4</option>
+                              <option value="05">5</option>
+                              <option value="06">6</option>
+                              <option value="07">7</option>
+                              <option value="08">8</option>
+                              <option value="09">9</option>
                               <option value="10">10</option>
                               <option value="11">11</option>
                               <option value="12">12</option>
                             </select>
                           </div>
                           <div class="col-8">
-                            <select class="form-control c-input" name="">
+                            <select class="form-control c-input" name="txtEndyear" id="txtEndyear">
                               <option value="">YYYY</option>
+                              <?php
+                              for ($i = date('Y'); $i > (date('Y') - 5); $i--) {
+                                ?>
+                                <option value="<?php echo $i;?>"><?php echo $i; ?></option>
+                                <?php
+                              }
+                              ?>
                             </select>
                           </div>
                         </div>
@@ -153,14 +167,14 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                         <div class="form-group row">
                           <label for="" class="col-12 col-form-label">Period for report :  <span class="text-danger">*</span></label>
                           <div class="col-12">
-                            <select class="form-control c-input" name="">
+                            <select class="form-control c-input" name="txtPeriod" id="txtPeriod">
                               <option value="">-- Choose period --</option>
-                              <option value="">Monthly</option>
-                              <option value="">Bimonth</option>
-                              <option value="">Quarter</option>
-                              <option value="">Trimester</option>
-                              <option value="">SemiAnnual</option>
-                              <option value="">Annual</option>
+                              <option value="Monthly">Monthly</option>
+                              <option value="Bimonth">Bimonth</option>
+                              <option value="Quarter">Quarter</option>
+                              <option value="Trimester">Trimester</option>
+                              <option value="SemiAnnual">SemiAnnual</option>
+                              <option value="Annual">Annual</option>
                             </select>
                           </div>
                         </div>
@@ -168,11 +182,11 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                     </div>
 
                     <div class="form-group row mb-0">
-                      <label for="" class="col-12 col-sm-2 col-form-label">Site of infection : </label>
+                      <label for="" class="col-12 col-sm-2 col-form-label">Site of infection : <span class="text-danger">*</span></label>
                       <div class="col-12 col-sm-3">
                         <div class="">
                           <label class="custom-switch mt-2 pl-0">
-                            <input type="checkbox" name="txtCath1" id="txtCath1" class="custom-switch-input">
+                            <input type="checkbox" name="txtCath1" id="txtSite1" class="custom-switch-input">
                             <span class="custom-switch-indicator"></span>
                             <span class="custom-switch-description text-dark">CLABSI</span>
                           </label>
@@ -181,335 +195,39 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <div class="col-12 col-sm-3">
                         <div class="">
                           <label class="custom-switch mt-2 pl-0">
-                            <input type="checkbox" name="txtCath1" id="txtCath1" class="custom-switch-input">
+                            <input type="checkbox" name="txtCath1" id="txtSite2" class="custom-switch-input">
                             <span class="custom-switch-indicator"></span>
                             <span class="custom-switch-description text-dark">PedVAE</span>
                           </label>
                         </div>
                       </div>
                       <div class="col-12 col-sm-4 text-right">
-                        <button type="button" class="btn btn-primary" name="button">Table report</button>
-                        <button type="button" class="btn btn-primary" name="button">Chart report</button>
+                        <button type="button" class="btn btn-primary" name="button" onclick="neonate.generateReport()">Genarate report</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- .card  -->
 
-                <div class="" id="table-zone">
-                  <h6 class="text-white">Table report</h6>
-                  <div class="card">
+                <div class="dn" id="table-zone">
+                  <div class="row pb-2">
+                    <div class="col-5">
+                        <h6 class="text-white">Table report</h6>
+                    </div>
+                    <div class="col-7 text-right">
+                      <button type="button" class="btn btn-primary btn-sm dn" style="margin-top: -10px;">CLABSI</button>
+                      <button type="button" class="btn btn-primary btn-sm dn" style="margin-top: -10px;">PedVAE</button>
+                    </div>
+                  </div>
+                  <div class="card dn" id="tablereportCLASBI">
                     <div class="card-header bg-primary-">
                       <h4 class="text-white-">Table : standardized ratio of CLABSI in NICU</h4>
                     </div>
 
                     <div class="card-body p-0">
                       <!-- <table class="" border="1"  id="tableQuarter"> -->
-                      <div class="" id="tmpDiv">
-                        <table id="tableQuarter" class="table table-bordered table-sm mb-0" border="1">
-                            <thead>
-                              <tr style="background: rgb(223, 223, 223);">
-                                <th>Year</th>
-                                <th>Quarter</th>
-                                <th>Birthweight</th>
-                                <th>CLABSI</th>
-                                <th>Catheter-days</th>
-                                <th>Rate</th>
-                                <th>SIR</th>
-                                <th>LWL</th>
-                                <th>CL</th>
-                                <th>UWL</th>
-                                <th>UCL</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td rowspan="25" style="vertical-align: top;">2012</td>
-                                <td rowspan="6" style="vertical-align: top;">1st</td>
-                                <td> < 751 gms. </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>751-1000 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1001-1500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1501-2500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td> >2500 gms </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>Total</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td rowspan="6" style="vertical-align: top;">2nd</td>
-                                <td> < 751 gms. </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
+                      <div class="" id="tmpDivCLASBI">
 
-                              <tr>
-                                <td>751-1000 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>a</td>
-                              </tr>
-                              <tr>
-                                <td>1001-1500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>a</td>
-                              </tr>
-                              <tr>
-                                <td>1501-2500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>a</td>
-                              </tr>
-                              <tr>
-                                <td> >2500 gms </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>a</td>
-                              </tr>
-                              <tr>
-                                <td>Total</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>a</td>
-                              </tr>
-
-                              <tr>
-                                <td rowspan="6" style="vertical-align: top;">3rd</td>
-                                <td> < 751 gms. </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>751-1000 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1001-1500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1501-2500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td> >2500 gms </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>Total</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-
-                              <tr>
-                                <td rowspan="6" style="vertical-align: top;">4th</td>
-                                <td> < 751 gms. </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>751-1000 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1001-1500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>1501-2500 gms</td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td> >2500 gms </td>
-                                <td>v</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-                              <tr>
-                                <td>Total</td>
-                                <td>d</td>
-                                <td>f</td>
-                                <td>h</td>
-                                <td>j</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                                <td>k</td>
-                              </tr>
-
-                              <tr>
-                                <td colspan="2" style="font-weight: bold;">GRAND TOTAL</td>
-                                <td style="font-weight: bold;">d</td>
-                                <td style="font-weight: bold;">f</td>
-                                <td style="font-weight: bold;">h</td>
-                                <td style="font-weight: bold;">j</td>
-                                <td style="font-weight: bold;">k</td>
-                                <td style="font-weight: bold;">k</td>
-                                <td style="font-weight: bold;">k</td>
-                                <td style="font-weight: bold;">k</td>
-                              </tr>
-
-                            </tbody>
-                          </table>
                       </div>
                     </div>
                   </div>
@@ -518,7 +236,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                 </div>
                 <!-- # table-zone -->
 
-                <div class="" id="chart-zone">
+                <div class="dn" id="chart-zone">
                   <h6 class="text-white">Chart report</h6>
                   <div class="card">
                     <div class="card-body">
