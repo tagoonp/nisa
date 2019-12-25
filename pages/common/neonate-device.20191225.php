@@ -233,7 +233,25 @@ if(isset($_GET['year'])){
                           </div>
 
                           <div class="col-12 col-sm-7">
+
                             <div class="table-responsive" id="tableZone1">
+                              <?php
+                              $columData = array();
+                              $strSQL = "SELECT * FROM nis_neo_deviceday WHERE ndw_uid = '$uid' AND YEAR(ndw_ddate) = '$year' ORDER BY ndw_ddate, ndw_neo_serial ASC";
+                              $resultHosphistory = mysqli_query($conn, $strSQL);
+                              if(($resultHosphistory) && (mysqli_num_rows($resultHosphistory) > 0)){
+                                while ($row = mysqli_fetch_array($resultHosphistory)) {
+                                  $buf = array();
+                                  foreach ($row as $key => $value) {
+                                      if(!is_int($key)){
+                                        $buf[$key] = $value;
+                                      }
+                                  }
+                                  $columData[] = $buf;
+                                }
+                              }
+
+                              ?>
                               <table class="table table-striped table-sm" id="table-1">
                                 <thead>
                                   <tr>
@@ -247,6 +265,26 @@ if(isset($_GET['year'])){
                                   </tr>
                                 </thead>
                                 <tbody id="table-1-data">
+                                  <?php
+                                  if(sizeof($columData) != 0){
+                                    foreach ($columData as $rowData) {
+                                      ?>
+                                      <tr>
+                                        <td>
+                                          <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['ndw_id'];?>', '<?php echo $rowData['ndw_neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
+                                          <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delDevicewelling('<?php echo $rowData['ndw_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
+                                        </td>
+                                        <td><?php echo $rowData['ndw_neo_serial']; ?></td>
+                                        <td><?php echo $rowData['ndw_ddate']; ?></td>
+                                        <td><?php echo $rowData['ndw_cath']; ?></td>
+                                        <td><?php echo $rowData['ndw_vent']; ?></td>
+                                        <td><?php echo $rowData['ndw_bw']; ?></td>
+                                        <td><?php echo $rowData['ndw_bwcat']; ?></td>
+                                      </tr>
+                                      <?php
+                                    }
+                                  }
+                                  ?>
                                 </tbody>
                               </table>
                             </div>

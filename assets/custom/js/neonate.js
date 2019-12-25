@@ -1,4 +1,30 @@
 var neonate = {
+  loadData(datagroup){
+    if(datagroup == 'deviceday'){
+      var param = {
+        uid: current_user,
+        year: $('#txtYearFillter').val(),
+        table: datagroup
+      }
+
+      var jxr = $.post(conf.api + 'neonate_data?stage=gettable', param, function(){})
+                 .always(function(resp){
+                   preload.hide()
+                   if(resp != 'No data'){
+                     $('#table-1-data').html(resp)
+                     setFontsize()
+                     $("#table-1").dataTable({
+                       "columnDefs": [
+                         { "width": "100px", "targets": 0 },
+                         { "sortable": false, "targets": [2,3] }
+                       ]
+                     });
+                   }
+                 })
+    }else{
+
+    }
+  },
   generateReport(){
     $check = 0
     $('.form-control').removeClass('is-invalid')
