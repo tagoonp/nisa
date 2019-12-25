@@ -17,7 +17,7 @@ var neonate = {
                      $("#table-1").dataTable({
                        "columnDefs": [
                          { "width": "100px", "targets": 0 },
-                         { "sortable": false, "targets": [2,3] }
+                         { "sortable": false, "targets": [0, 1] }
                        ]
                      });
                      setFontsize()

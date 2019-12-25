@@ -49,16 +49,16 @@ if($stage == 'gettable'){
         foreach ($columData as $rowData) {
           ?>
           <tr>
-            <td>
-              <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['ndw_id'];?>', '<?php echo $rowData['ndw_neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
-              <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delDevicewelling('<?php echo $rowData['ndw_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
-            </td>
             <td><?php echo $rowData['ndw_neo_serial']; ?></td>
             <td><?php echo $rowData['ndw_ddate']; ?></td>
             <td><?php echo $rowData['ndw_cath']; ?></td>
             <td><?php echo $rowData['ndw_vent']; ?></td>
             <td><?php echo $rowData['ndw_bw']; ?></td>
             <td><?php echo $rowData['ndw_bwcat']; ?></td>
+            <td>
+              <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['ndw_id'];?>', '<?php echo $rowData['ndw_neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
+              <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delDevicewelling('<?php echo $rowData['ndw_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
+            </td>
           </tr>
           <?php
         }
