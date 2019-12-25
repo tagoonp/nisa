@@ -284,6 +284,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script type="text/javascript">
     $(document).ready(function(){
 
+      preload.hide()
+
       if(jQuery().daterangepicker){
         if($('#txtAdm').length){
           $('#txtAdm').daterangepicker({
