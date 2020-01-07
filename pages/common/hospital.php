@@ -303,6 +303,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
     $(document).ready(function(){
       $('#tableZone1').niceScroll();
 
+      setTimeout(function(){ preload.hide() }, 2000)
+
       $("#table-1").dataTable({
         "columnDefs": [
           { "width": "50px", "targets": 0 },

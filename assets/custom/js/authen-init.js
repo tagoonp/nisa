@@ -19,7 +19,6 @@ var authen_init = {
                    snap.forEach(i=>{
                      $('.userFullname').html(i.fname + ' ' + i.lname)
                    })
-                   // preload.hide()
                  }else{
                    window.localStorage.removeItem(conf.prefix + 'uid')
                    window.localStorage.removeItem(conf.prefix + 'role')
