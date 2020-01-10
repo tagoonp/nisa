@@ -1,3 +1,3 @@
 <?php
-exec("./controller/test_r.R");
+exec("test_r.R");
 ?>
