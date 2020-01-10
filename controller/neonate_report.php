@@ -63,12 +63,13 @@ if($stage == 'reportCLASBI'){
   <?php
   if($period == 'Quarter'){
     for ($i=0; $i < $round ; $i++) {
+      $total_g1 = 0; $total_g2 = 0; $total_g3 = 0; $total_g4 = 0; $total_g5 = 0;
       ?>
       <tr>
         <td rowspan="25" style="vertical-align: top;"><?php echo ($y1 - 1) + 1; ?></td>
         <td rowspan="6" style="vertical-align: top;">1st</td>
         <td> < 751 gms. </td>
-        <td><?php echo getData($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end, $total_g1); echo $buffer_1; $total_g1 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -79,7 +80,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>751-1000 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 2, 'quarter', 1, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 2, 'quarter', 1, $uid, $start, $end, $total_g1); echo $buffer_1; $total_g1 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -90,7 +91,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1001-1500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 3, 'quarter', 1, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 3, 'quarter', 1, $uid, $start, $end, $total_g1); echo $buffer_1; $total_g1 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -101,7 +102,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1501-2500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 4, 'quarter', 1, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 4, 'quarter', 1, $uid, $start, $end, $total_g1); echo $buffer_1; $total_g1 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -112,7 +113,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td> >2500 gms </td>
-        <td><?php echo getData($conn, 'CLABSI', 5, 'quarter', 1, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 5, 'quarter', 1, $uid, $start, $end, $total_g1); echo $buffer_1; $total_g1 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -123,7 +124,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>Total</td>
-        <td></td>
+        <td><?php echo $total_g1; ?></td>
         <td></td>
         <td></td>
         <td></td>
@@ -135,7 +136,7 @@ if($stage == 'reportCLASBI'){
       <tr>
         <td rowspan="6" style="vertical-align: top;">2nd</td>
         <td> < 751 gms. </td>
-        <td><?php echo getData($conn, 'CLABSI', 1, 'quarter', 2, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 1, 'quarter', 2, $uid, $start, $end, $total_g2); echo $buffer_1; $total_g2 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -147,7 +148,7 @@ if($stage == 'reportCLASBI'){
 
       <tr>
         <td>751-1000 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 2, 'quarter', 2, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 2, 'quarter', 2, $uid, $start, $end, $total_g2); echo $buffer_1; $total_g2 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -158,7 +159,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1001-1500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 3, 'quarter', 2, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 3, 'quarter', 2, $uid, $start, $end, $total_g2); echo $buffer_1; $total_g2 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -169,7 +170,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1501-2500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 4, 'quarter', 2, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 4, 'quarter', 2, $uid, $start, $end, $total_g2); echo $buffer_1; $total_g2 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -180,7 +181,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td> >2500 gms </td>
-        <td><?php echo getData($conn, 'CLABSI', 5, 'quarter', 2, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 5, 'quarter', 2, $uid, $start, $end, $total_g2); echo $buffer_1; $total_g2 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -191,7 +192,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>Total</td>
-        <td></td>
+        <td><?php echo $total_g2; ?></td>
         <td></td>
         <td></td>
         <td></td>
@@ -204,7 +205,7 @@ if($stage == 'reportCLASBI'){
       <tr>
         <td rowspan="6" style="vertical-align: top;">3rd</td>
         <td> < 751 gms. </td>
-        <td><?php echo getData($conn, 'CLABSI', 1, 'quarter', 3, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 1, 'quarter', 3, $uid, $start, $end, $total_g3); echo $buffer_1; $total_g3 += $buffer_1;  ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -215,7 +216,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>751-1000 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 2, 'quarter', 3, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 2, 'quarter', 3, $uid, $start, $end, $total_g3); echo $buffer_1; $total_g3 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -226,7 +227,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1001-1500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 3, 'quarter', 3, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 3, 'quarter', 3, $uid, $start, $end, $total_g3); echo $buffer_1; $total_g3 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -237,7 +238,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1501-2500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 4, 'quarter', 3, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 4, 'quarter', 3, $uid, $start, $end, $total_g3); echo $buffer_1; $total_g3 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -248,7 +249,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td> >2500 gms </td>
-        <td><?php echo getData($conn, 'CLABSI', 5, 'quarter', 3, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 5, 'quarter', 3, $uid, $start, $end, $total_g3); echo $buffer_1; $total_g3 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -259,7 +260,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>Total</td>
-        <td></td>
+        <td><?php echo $total_g3; ?></td>
         <td></td>
         <td></td>
         <td></td>
@@ -272,7 +273,7 @@ if($stage == 'reportCLASBI'){
       <tr>
         <td rowspan="6" style="vertical-align: top;">4th</td>
         <td> < 751 gms. </td>
-        <td><?php echo getData($conn, 'CLABSI', 1, 'quarter', 4, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 1, 'quarter', 4, $uid, $start, $end, $total_g4); echo $buffer_1; $total_g4 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -283,7 +284,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>751-1000 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 2, 'quarter', 4, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 2, 'quarter', 4, $uid, $start, $end, $total_g4); echo $buffer_1; $total_g4 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -294,7 +295,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1001-1500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 3, 'quarter', 4, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 3, 'quarter', 4, $uid, $start, $end, $total_g4); echo $buffer_1; $total_g4 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -305,7 +306,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>1501-2500 gms</td>
-        <td><?php echo getData($conn, 'CLABSI', 4, 'quarter', 4, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 4, 'quarter', 4, $uid, $start, $end, $total_g4); echo $buffer_1; $total_g4 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -316,7 +317,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td> >2500 gms </td>
-        <td><?php echo getData($conn, 'CLABSI', 5, 'quarter', 4, $uid, $start, $end); ?></td>
+        <td><?php $buffer_1 = getData($conn, 'CLABSI', 5, 'quarter', 4, $uid, $start, $end, $total_g4); echo $buffer_1; $total_g4 += $buffer_1; ?></td>
         <td>d</td>
         <td>f</td>
         <td>h</td>
@@ -327,7 +328,7 @@ if($stage == 'reportCLASBI'){
       </tr>
       <tr>
         <td>Total</td>
-        <td></td>
+        <td><?php echo $total_g4; ?></td>
         <td></td>
         <td></td>
         <td></td>
@@ -339,7 +340,7 @@ if($stage == 'reportCLASBI'){
 
       <tr>
         <td colspan="2" style="font-weight: bold;">GRAND TOTAL</td>
-        <td style="font-weight: bold;">d</td>
+        <td style="font-weight: bold;"><?php echo $total_g1 + $total_g2 + $total_g3 + $total_g4; ?></td>
         <td style="font-weight: bold;">f</td>
         <td style="font-weight: bold;">h</td>
         <td style="font-weight: bold;">j</td>
@@ -364,7 +365,7 @@ if($stage == 'reportCLASBI'){
 }
 
 
-function getData($conn, $site, $bw_cat, $param, $value, $uid, $start, $end){
+function getData($conn, $site, $bw_cat, $param, $value, $uid, $start, $end, $sum_subgroup){
   $start = $start."-01";
   $end = $end."-31";
   $strSQL = "SELECT
@@ -381,7 +382,6 @@ function getData($conn, $site, $bw_cat, $param, $value, $uid, $start, $end){
    if(($result) && (mysqli_num_rows($result) > 0)){
      $data = mysqli_fetch_assoc($result);
      return $data['cn'];
-     // return $strSQL;
    }else{
      // return $strSQL;
      return 0;
