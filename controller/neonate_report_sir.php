@@ -76,7 +76,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; $buffer_2 = 54; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td>j</td>
+        <td><?php echo stats_dens_chisquare ( 0.025 , 3 ); ?></td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -453,5 +453,39 @@ function getSIR($conn, $site, $bw_cate){
 
   mysqli_close($conn);
   die();
+}
+
+function getChiSquare($x, $n) {
+  if ( ($n==1) && ($x > 1000) ) {
+  return 0;
+  }
+
+  if ( ($x>1000) || ($n>1000) ) {
+  $q = getChiSquare(($x-$n)*($x-$n)/(2*$n),1) / 2;
+  if($x > $n) {
+  return $q;
+  } else {
+  return 1 - $q;
+  }
+  }
+  $p = exp(-0.5 * $x);
+  if(($n % 2) == 1) {
+  $p = $p * sqrt(2*$x/pi());
+  }
+  $k = $n;
+  while($k >= 2) {
+  $p = $p * ($x/$k);
+  $k = $k - 2;
+  }
+  $t = $p;
+  $a = $n;
+  while($t > 0.0000000001 * $p) {
+  $a = $a + 2;
+  $t = $t * ($x / $a);
+  $p = $p + $t;
+  }
+
+  $retval = 1-$p;
+  return $retval;
 }
 ?>

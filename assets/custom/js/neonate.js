@@ -34,6 +34,10 @@ var neonate = {
                      $("#table-1").on( 'order.dt', function () {
                        setFontsize()
                      });
+
+                     $("#table-1").on( 'search.dt', function () {
+                         setFontsize()
+                     });
                    }
                  })
     }else{

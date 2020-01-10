@@ -96,11 +96,11 @@ if(isset($_GET['vrow'])){
           <div class="col-12">
             <div class="login-brand">
               <!-- <img src="../../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
-              <h1 class="text-white">Neonate :: Append data</h1>
+              <h1 class="text-white">Neo :: Append data</h1>
             </div>
             <div class="row">
               <div class="col-12 mb-3">
-                <button type="button" class="btn btn-primary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate?uid=<?php echo $uid;?>&role=<?php echo $role;?>')"><i class="fas fa-home text-white"></i>  Neo main menu</button>
+                <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate?uid=<?php echo $uid;?>&role=<?php echo $role;?>')"><i class="fas fa-home text-white"></i>  Neo main menu</button>
                 <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-append?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Patient's characteristic</button>
                 <button type="button" class="btn btn-primary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-device?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Device associate</button>
                 <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-other?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Other infection</button>
@@ -446,7 +446,7 @@ if(isset($_GET['vrow'])){
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" ></script>
   <script src="../../node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <script src="../../node_modules/moment/min/moment.min.js"></script>
-  <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../../node_modules/datatables/media/js/jquery.dataTables.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../../node_modules/preload.js/dist/js/preload.js"></script>

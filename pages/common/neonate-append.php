@@ -81,12 +81,12 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
           <div class="col-12">
             <div class="login-brand">
               <!-- <img src="../../assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
-              <h1 class="text-white">Neonate :: Append data</h1>
+              <h1 class="text-white">Neo :: Append data</h1>
             </div>
 
             <div class="row">
               <div class="col-12 mb-3">
-                <button type="button" class="btn btn-primary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate?uid=<?php echo $uid;?>&role=<?php echo $role;?>')"><i class="fas fa-home text-white"></i> Neo main menu</button>
+                <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate?uid=<?php echo $uid;?>&role=<?php echo $role;?>')"><i class="fas fa-home text-white"></i> Neo main menu</button>
                 <button type="button" class="btn btn-primary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-append?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Patient's characteristic</button>
                 <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-device?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Device associate</button>
                 <button type="button" class="btn btn-secondary btn-icon" name="button" onclick="fnc.gotoUrl('./neonate-other?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">Other infection</button>
@@ -194,6 +194,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                       <table class="table table-striped table-sm" id="table-1">
                         <thead>
                           <tr>
+                            <th class="dn"></th>
                             <th class="text-center"></th>
                             <th>Serial</th>
                             <th>HN</th>
@@ -212,7 +213,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                           if(sizeof($columData) == 0){
                             ?>
                             <tr>
-                              <td colspan="12" class="text-center">
+                              <td colspan="13" class="text-center">
                                 No patient found.
                               </td>
                             </tr>
@@ -221,6 +222,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                             foreach ($columData as $rowData) {
                               ?>
                               <tr>
+                                <td class="dn"></td>
                                 <td>
                                   <button type="button" class="btn btn-sm btn-icon" name="button" onclick="setLocalData('<?php echo $rowData['neo_serial'];?>')"><i class="fas fa-pencil-alt text-dark"></i></button>
                                   <button type="button" class="btn btn-sm btn-icon" name="button" onclick="neonate.delPatient('<?php echo $rowData['neo_id'];?>')"><i class="fas fa-trash text-danger"></i></button>
@@ -262,7 +264,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" ></script>
   <script src="../../node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <script src="../../node_modules/moment/min/moment.min.js"></script>
-  <script src="../../node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../../node_modules/datatables/media/js/jquery.dataTables.js"></script>
   <script src="../../node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../../node_modules/preload.js/dist/js/preload.js"></script>
@@ -322,9 +324,21 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
       $("#table-1").dataTable({
         "columnDefs": [
-          { "width": "100px", "targets": 0 },
-          { "sortable": false, "targets": [2,3] }
+          { width: "100px", targets: 1 },
+          { sortable: false, targets: [0, 1] }
         ]
+      });
+
+      $("#table-1").on( 'page.dt', function () {
+        setFontsize()
+      });
+
+      $("#table-1").on( 'order.dt', function () {
+        setFontsize()
+      });
+
+      $("#table-1").on( 'search.dt', function () {
+          setFontsize()
       });
 
       calculateLos()
