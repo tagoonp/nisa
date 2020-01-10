@@ -53,6 +53,7 @@ if($stage == 'reportCLASBI'){
           <th>Catheter-days</th>
           <th>Rate</th>
           <th>SIR</th>
+          <th>nLCL</th>
           <th>LWL</th>
           <th>CL</th>
           <th>UWL</th>
@@ -76,7 +77,8 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; $buffer_2 = 54; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td><?php  ?></td>
+        <td><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2'); echo number_format(($buffer_5/2), 3);?></td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -91,6 +93,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>1001-1500 gms</td>
@@ -99,6 +102,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -113,6 +117,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td> >2500 gms </td>
@@ -121,6 +126,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -135,6 +141,7 @@ if($stage == 'reportCLASBI'){
         <td></td>
         <td></td>
         <td></td>
+        <td>k</td>
       </tr>
       <tr>
         <td rowspan="6" style="vertical-align: top;">2nd</td>
@@ -144,6 +151,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -159,6 +167,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>a</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>1001-1500 gms</td>
@@ -170,6 +179,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>a</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>1501-2500 gms</td>
@@ -181,6 +191,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>a</td>
+        <td>k</td>
       </tr>
       <tr>
         <td> >2500 gms </td>
@@ -192,6 +203,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>a</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>Total</td>
@@ -203,6 +215,7 @@ if($stage == 'reportCLASBI'){
         <td></td>
         <td></td>
         <td></td>
+        <td>k</td>
       </tr>
 
       <tr>
@@ -213,6 +226,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -227,6 +241,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>1001-1500 gms</td>
@@ -235,6 +250,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -249,6 +265,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td> >2500 gms </td>
@@ -257,6 +274,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -271,6 +289,7 @@ if($stage == 'reportCLASBI'){
         <td></td>
         <td></td>
         <td></td>
+        <td>k</td>
       </tr>
 
       <tr>
@@ -281,6 +300,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -295,6 +315,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td>1001-1500 gms</td>
@@ -303,6 +324,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -317,6 +339,7 @@ if($stage == 'reportCLASBI'){
         <td>k</td>
         <td>k</td>
         <td>k</td>
+        <td>k</td>
       </tr>
       <tr>
         <td> >2500 gms </td>
@@ -325,6 +348,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
         <td>j</td>
+        <td>k</td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
@@ -339,6 +363,7 @@ if($stage == 'reportCLASBI'){
         <td></td>
         <td></td>
         <td></td>
+        <td>k</td>
       </tr>
 
       <tr>
@@ -347,6 +372,7 @@ if($stage == 'reportCLASBI'){
         <td style="font-weight: bold;"><?php $g_cad1 = $cd1 + $cd2 + $cd3 + $cd4; echo number_format($g_cad1); ?></td>
         <td style="font-weight: bold;"><?php $g_rate = 0; if($g_cad1 != 0){ $g_rate = ($g_class * 1000)/$g_cad1; } echo number_format($g_rate, 1); ?></td>
         <td style="font-weight: bold;"><?php $g_cad = $cad1 + $cad2 + $cad3 + $cad4; $g_sir = 0; if($g_cad != 0){ $g_sir = $g_class / $g_cad; } echo number_format($g_sir, 1);?></td>
+        <td style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
@@ -455,37 +481,15 @@ function getSIR($conn, $site, $bw_cate){
   die();
 }
 
-function getChiSquare($x, $n) {
-  if ( ($n==1) && ($x > 1000) ) {
-  return 0;
+function getnLCL($conn, $df, $prop) {
+  $strSQL = "SELECT $prop FROM chistable WHERE df = '$df'";
+  $result = mysqli_query($conn, $strSQL);
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    $data = mysqli_fetch_assoc($result);
+    return $data[$prop];
+  }else{
+    return 0;
   }
 
-  if ( ($x>1000) || ($n>1000) ) {
-  $q = getChiSquare(($x-$n)*($x-$n)/(2*$n),1) / 2;
-  if($x > $n) {
-  return $q;
-  } else {
-  return 1 - $q;
-  }
-  }
-  $p = exp(-0.5 * $x);
-  if(($n % 2) == 1) {
-  $p = $p * sqrt(2*$x/pi());
-  }
-  $k = $n;
-  while($k >= 2) {
-  $p = $p * ($x/$k);
-  $k = $k - 2;
-  }
-  $t = $p;
-  $a = $n;
-  while($t > 0.0000000001 * $p) {
-  $a = $a + 2;
-  $t = $t * ($x / $a);
-  $p = $p + $t;
-  }
-
-  $retval = 1-$p;
-  return $retval;
 }
 ?>
