@@ -119,7 +119,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                             <select class="form-control c-input" name="txtStartyear" id="txtStartyear">
                               <option value="">YYYY</option>
                               <?php
-                              for ($i = date('Y'); $i > (date('Y') - 5); $i--) {
+                              for ($i = date('Y'); $i > (date('Y') - 10); $i--) {
                                 ?>
                                 <option value="<?php echo $i;?>"><?php echo $i; ?></option>
                                 <?php
@@ -153,7 +153,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                             <select class="form-control c-input" name="txtEndyear" id="txtEndyear">
                               <option value="">YYYY</option>
                               <?php
-                              for ($i = date('Y'); $i > (date('Y') - 5); $i--) {
+                              for ($i = date('Y'); $i > (date('Y') - 10); $i--) {
                                 ?>
                                 <option value="<?php echo $i;?>"><?php echo $i; ?></option>
                                 <?php
@@ -307,6 +307,9 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
       // calculateLos()
       // $("#tableQuarter").tableExport();
+
+      preload.hide()
+
     })
 
     $(function(){

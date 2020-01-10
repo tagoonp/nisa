@@ -1,4 +1,79 @@
 var neonate = {
+  loadData(datagroup){
+    if(datagroup == 'deviceday'){
+      var param = {
+        uid: current_user,
+        year: $('#txtYearFillter').val(),
+        vrow: $('#txtRowFillter').val(),
+        table: datagroup
+      }
+
+      var jxr = $.post(conf.api + 'neonate_data?stage=gettable', param, function(){})
+                 .always(function(resp){
+                   preload.hide()
+                   if(resp != 'No data'){
+                     $('#table-1-data').html(resp)
+
+                     $("#table-1")
+                      .dataTable({
+                       "columnDefs": [
+                         { "width": "100px", "targets": 0 },
+                         { "sortable": false, "targets": [0, 3, 4, 5, 6] },
+                       ],
+                       "order": [[ 2, "desc" ]],
+                       "pageLength": 25
+                     });
+                     setFontsize()
+
+                     var table = $('#table-1').DataTable();
+
+                     $("#table-1").on( 'page.dt', function () {
+                       setFontsize()
+                     });
+
+                     $("#table-1").on( 'order.dt', function () {
+                       setFontsize()
+                     });
+                   }
+                 })
+    }else{
+      var param = {
+        uid: current_user,
+        year: $('#txtYearFillter').val(),
+        vrow: $('#txtRowFillter').val(),
+        table: datagroup
+      }
+
+      var jxr = $.post(conf.api + 'neonate_data?stage=gettable', param, function(){})
+                 .always(function(resp){
+                   preload.hide()
+                   if(resp != 'No data'){
+                     $('#table-2-data').html(resp)
+
+                     $("#table-2")
+                      .dataTable({
+                       "columnDefs": [
+                         { "width": "100px", "targets": 0 },
+                         { "sortable": false, "targets": [0, 3, 4, 5, 6] },
+                       ],
+                       "order": [[ 2, "desc" ]],
+                       "pageLength": 25
+                     });
+                     setFontsize()
+
+                     var table = $('#table-2').DataTable();
+
+                     $("#table-2").on( 'page.dt', function () {
+                       setFontsize()
+                     });
+
+                     $("#table-2").on( 'order.dt', function () {
+                       setFontsize()
+                     });
+                   }
+                 })
+    }
+  },
   generateReport(){
     $check = 0
     $('.form-control').removeClass('is-invalid')
@@ -48,7 +123,7 @@ var neonate = {
     preload.show()
 
     if($clabsi == 1){
-      var jxr = $.post(conf.api + 'neonate_report?stage=reportCLASBI', param, function(){})
+      var jxr = $.post(conf.api + 'neonate_report_sir?stage=reportCLASBI', param, function(){})
                  .always(function(resp){
                    preload.hide()
                    if(resp != 'No data'){
