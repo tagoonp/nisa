@@ -119,7 +119,9 @@ $role = mysqli_real_escape_string($conn, $_GET['role']);
   <script type="text/javascript">
     $(document).ready(function(){
       $('body').niceScroll();
-      setTimeout((){ preload.hide() }, 2000)
+      setTimeout(function(){
+        preload.hide()
+      }, 2000)
     })
   </script>
 </body>

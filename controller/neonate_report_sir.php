@@ -76,7 +76,7 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; $buffer_2 = 54; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td><?php echo stats_dens_chisquare ( 0.025 , 3 ); ?></td>
+        <td><?php  ?></td>
         <td>k</td>
         <td>k</td>
         <td>k</td>
