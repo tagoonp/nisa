@@ -123,7 +123,7 @@ var neonate = {
     preload.show()
 
     if($clabsi == 1){
-      var jxr = $.post(conf.api + 'neonate_report?stage=reportCLASBI', param, function(){})
+      var jxr = $.post(conf.api + 'neonate_report_sir?stage=reportCLASBI', param, function(){})
                  .always(function(resp){
                    preload.hide()
                    if(resp != 'No data'){
