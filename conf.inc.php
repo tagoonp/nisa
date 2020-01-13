@@ -11,19 +11,19 @@ date_default_timezone_set("Asia/Bangkok");
 // define( 'TB_PREFIX', '' );
 // define( 'ROOT_DOMAIN', 'http://localhost/rmis5/' );
 
-// define( 'DB_NAME', 'nisa' );
-// define( 'DB_HOST', 'localhost' );
-// define( 'DB_USER', 'rmis5' );
-// define( 'DB_PASSWORD', 'rmis5' );
-// define( 'TB_PREFIX', '' );
-// define( 'ROOT_DOMAIN', 'https://fxplor.com/nisa/');
-
 define( 'DB_NAME', 'nisa' );
+define( 'DB_HOST', 'localhost' );
 define( 'DB_USER', 'rmis5' );
 define( 'DB_PASSWORD', 'rmis5' );
-define( 'DB_HOST', '157.230.46.106' );
 define( 'TB_PREFIX', '' );
-define( 'ROOT_DOMAIN', 'http://localhost/rmis5/' );
+define( 'ROOT_DOMAIN', 'https://fxplor.com/nisa/');
+
+// define( 'DB_NAME', 'nisa' );
+// define( 'DB_USER', 'rmis5' );
+// define( 'DB_PASSWORD', 'rmis5' );
+// define( 'DB_HOST', '157.230.46.106' );
+// define( 'TB_PREFIX', '' );
+// define( 'ROOT_DOMAIN', 'http://localhost/rmis5/' );
 
 // Define system parameters
 $sysdate = date('Y-m-d');
