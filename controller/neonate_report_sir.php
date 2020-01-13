@@ -53,13 +53,13 @@ if($stage == 'reportCLASBI'){
           <th>Catheter-days</th>
           <th>Rate</th>
           <th>SIR</th>
-          <th class="dn" onload="">nLCL</th>
+          <th style="display: none;">nLCL</th>
           <th>LCL</th>
-          <th class="dn" onload="">nLWL</th>
+          <th style="display: none;">nLWL</th>
           <th>LWL</th>
-          <th class="dn" onload="">nUWL</th>
+          <th style="display: none;">nUWL</th>
           <th>UWL</th>
-          <th class="dn" onload="">nUCL</th>
+          <th style="display: none;">nUCL</th>
           <th>UCL</th>
           <!-- <th>CL-LCL</th>
           <th>CL-LWL</th>
@@ -84,13 +84,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; //$buffer_2 = 54; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -103,13 +103,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 2, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; //$buffer_2 = 93; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 2)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 2)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -122,13 +122,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 3, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -141,13 +141,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 4, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 4)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 4)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -160,13 +160,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 5, 'quarter', 1, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd1 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad1 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -179,13 +179,13 @@ if($stage == 'reportCLASBI'){
         <td><?php echo number_format($cd1); ?></td>
         <td><?php $buffer_3 = 0; if($cd1 != 0){ $buffer_3 = ($total_g1 * 1000)/$cd1; } echo number_format($buffer_3, 1); ?></td>
         <td><?php $sir1 = 0; if($cad1 != 0){  $sir1= $total_g1/$cad1; } echo number_format($sir1, 1);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -199,13 +199,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 2, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd2 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -219,13 +219,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 2, 'quarter', 2, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd2 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 2)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 2)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -238,13 +238,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 3, 'quarter', 2, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd2 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -257,13 +257,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 4, 'quarter', 2, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd2 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 4)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 4)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -276,13 +276,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 5, 'quarter', 2, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd2 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad2 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -295,13 +295,13 @@ if($stage == 'reportCLASBI'){
         <td><?php echo number_format($cd2); ?></td>
         <td><?php $buffer_3 = 0; if($cd2 != 0){ $buffer_3 = ($total_g2 * 1000)/$cd2; } echo number_format($buffer_3, 1); ?></td>
         <td><?php $sir2 = 0; if($cad2 != 0){  $sir2 = $total_g2/$cad2; } echo number_format($sir2, 1);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r3')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r3')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -316,13 +316,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 3, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd3 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -335,13 +335,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 2, 'quarter', 3, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd3 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 2)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 2)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -354,13 +354,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 3, 'quarter', 3, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd3 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -373,13 +373,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 4, 'quarter', 3, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd3 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 4)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 4)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -392,13 +392,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 5, 'quarter', 3, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd3 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad3 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -411,13 +411,13 @@ if($stage == 'reportCLASBI'){
         <td><?php echo number_format($cd3); ?></td>
         <td><?php $buffer_3 = 0; if($cd3 != 0){ $buffer_3 = ($total_g3 * 1000)/$cd3; } echo number_format($buffer_3, 1); ?></td>
         <td><?php $sir3 = 0; if($cad3 != 0){  $sir3= $total_g3/$cad3; } echo number_format($sir3, 1);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -432,13 +432,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 1, 'quarter', 4, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd4 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 1)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 1)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -451,13 +451,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 2, 'quarter', 4, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd4 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 2)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 2)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -470,13 +470,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 3, 'quarter', 4, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd4 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 3)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 3)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -489,13 +489,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 4, 'quarter', 4, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd4 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 4)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 4)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -508,13 +508,13 @@ if($stage == 'reportCLASBI'){
         <td><?php $buffer_2 = getCatheterday($conn, 'CLABSI', 5, 'quarter', 4, $uid, $start, $end, $y1); echo number_format($buffer_2); $cd4 += $buffer_2; ?></td>
         <td><?php $b3 = 0; if($buffer_2 != 0){ $buffer_3 = ($buffer_1 * 1000)/$buffer_2; echo number_format($buffer_3, 1); $b3 = $buffer_3;}else{echo 0;} ?></td>
         <td><?php $bb4 = ($buffer_2 * getSIR($conn, 'CLABSI', 5)); if($bb4 != 0){ $b4 = $buffer_1/$bb4; }else{ $b4 = 0;} $cad4 += ($buffer_2 * getSIR($conn, 'CLABSI', 5)); echo number_format($b4, 1); ?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r2')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($buffer_1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($bb4 != 0){ $buffer_6 = $buffer_5/$bb4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -527,13 +527,13 @@ if($stage == 'reportCLASBI'){
         <td><?php echo number_format($cd4); ?></td>
         <td><?php $buffer_3 = 0; if($cd4 != 0){ $buffer_3 = ($total_g4 * 1000)/$cd4; } echo number_format($buffer_3, 1); ?></td>
         <td><?php $sir4 = 0; if($cad4 != 0){  $sir4 = $total_g1/$cad4; } echo number_format($sir4, 1);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
         <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
-        <td class="dn"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
+        <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
         <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
         <!-- <td>1</td> -->
         <!-- <td>2</td> -->
@@ -547,13 +547,13 @@ if($stage == 'reportCLASBI'){
         <td style="font-weight: bold;"><?php $g_cad1 = $cd1 + $cd2 + $cd3 + $cd4; echo number_format($g_cad1); ?></td>
         <td style="font-weight: bold;"><?php $g_rate = 0; if($g_cad1 != 0){ $g_rate = ($g_class * 1000)/$g_cad1; } echo number_format($g_rate, 1); ?></td>
         <td style="font-weight: bold;"><?php $g_cad = $cad1 + $cad2 + $cad3 + $cad4; $g_sir = 0; if($g_cad != 0){ $g_sir = $g_class / $g_cad; } echo number_format($g_sir, 1);?></td>
-        <td class="dn" style="font-weight: bold;"></td>
+        <td style="display: none;" style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
-        <td class="dn" style="font-weight: bold;"></td>
+        <td style="display: none;" style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
-        <td class="dn" style="font-weight: bold;"></td>
+        <td style="display: none;" style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
-        <td class="dn" style="font-weight: bold;"></td>
+        <td style="display: none;" style="font-weight: bold;"></td>
         <td style="font-weight: bold;"></td>
       </tr>
 

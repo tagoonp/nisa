@@ -319,7 +319,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
         // $("#tableQuarter").tableExport();
         // window.open('data:application/vnd.ms-excel,' + $('#tmpDiv').html());
 
-        var table =  $('#tmpDiv').html();
+        var table =  $('#tmpDivCLASBI').html();
 
         var ua = window.navigator.userAgent;
         var msie = ua.indexOf("MSIE ");
