@@ -117,17 +117,19 @@ var neonate = {
       return ;
     }
 
-    var param = {
-      startMonth: $('#txtStartyear').val() + '-' + $('#txtStartmonth').val(),
-      endMonth: $('#txtEndyear').val() + '-' + $('#txtEndmonth').val(),
-      period: $('#txtPeriod').val(),
-      uid: current_user
-    }
-
     preload.show()
 
     if($clabsi == 1){
-      var jxr = $.post(conf.api + 'neonate_report_sir?stage=reportCLASBI', param, function(){})
+
+      var param = {
+        startMonth: $('#txtStartyear').val() + '-' + $('#txtStartmonth').val(),
+        endMonth: $('#txtEndyear').val() + '-' + $('#txtEndmonth').val(),
+        period: $('#txtPeriod').val(),
+        uid: current_user,
+        type: 'CLABSI'
+      }
+
+      var jxr1 = $.post(conf.api + 'neonate_report_sir?stage=report', param, function(){})
                  .always(function(resp){
                    preload.hide()
                    if(resp != 'No data'){
@@ -141,6 +143,28 @@ var neonate = {
 
     if($pedvae == 1){
 
+      var param = {
+        startMonth: $('#txtStartyear').val() + '-' + $('#txtStartmonth').val(),
+        endMonth: $('#txtEndyear').val() + '-' + $('#txtEndmonth').val(),
+        period: $('#txtPeriod').val(),
+        uid: current_user,
+        type: 'PedVAE'
+      }
+
+      var jxr2 = $.post(conf.api + 'neonate_report_sir?stage=report', param, function(){})
+                 .always(function(resp){
+                   console.log(resp);
+                   preload.hide()
+                   if(resp != 'No data'){
+                     $('#table-zone').removeClass('dn')
+                     $('#tablereportPedVAE').removeClass('dn')
+                     $('#tmpDivPedVAE').html(resp)
+                     setFontsize()
+                   }
+                 })
+    }else{
+       $('#tablereportPedVAE').addClass('dn')
+       $('#tmpDivPedVAE').html('')
     }
 
 

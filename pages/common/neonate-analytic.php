@@ -222,17 +222,34 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                   <div class="card dn" id="tablereportCLASBI">
                     <div class="card-header bg-primary-">
                       <h4 class="text-white-">Table : standardized ratio of CLABSI in NICU</h4>
+                      <div class="card-header-action dropdown">
+                        <a href="#" id="btnChartCLABSI" class="btn btn-danger"><i class="fas fa-chart-line text-white"></i> Chart</a>
+                        <a href="#" id="btnDownloadCLABSI" class="btn btn-danger"><i class="fas fa-download text-white"></i> Export</a>
+                      </div>
                     </div>
-
                     <div class="card-body p-0">
-                      <!-- <table class="" border="1"  id="tableQuarter"> -->
                       <div class="" id="tmpDivCLASBI">
 
                       </div>
                     </div>
                   </div>
 
-                  <button type="button" name="button" id="btnDownload">asd</button>
+                  <div class="card dn" id="tablereportPedVAE">
+                    <div class="card-header bg-primary-">
+                      <h4 class="text-white-">Table : standardized ratio of PedVAE in NICU</h4>
+                      <div class="card-header-action dropdown">
+                        <a href="#" id="btnChartPedVAE" class="btn btn-danger"><i class="fas fa-chart-line text-white"></i> Chart</a>
+                        <a href="#" id="btnDownloadPedVAE" class="btn btn-danger"><i class="fas fa-download text-white"></i> Export</a>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="" id="tmpDivPedVAE">
+
+                      </div>
+                    </div>
+                  </div>
+
+
                 </div>
                 <!-- # table-zone -->
 
@@ -314,20 +331,14 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
     $(function(){
 
-      $('#btnDownload').click(function(){
-        // console.log('a');
-        // $("#tableQuarter").tableExport();
-        // window.open('data:application/vnd.ms-excel,' + $('#tmpDiv').html());
-
+      $('#btnDownloadCLABSI').click(function(){
         var table =  $('#tmpDivCLASBI').html();
-
         var ua = window.navigator.userAgent;
         var msie = ua.indexOf("MSIE ");
         var is_edge = navigator.userAgent.toLowerCase().indexOf('edge') > -1;
         if(is_edge === true) {
            sa = true;
           var blob = new Blob( [ table ], { type: "text/html"} );
-           // Works for Internet Explorer and Microsoft Edge
           window.navigator.msSaveOrOpenBlob( blob, "output.xls" );
         } else
         if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
@@ -336,12 +347,51 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
             txtArea1.document.write(table);
             txtArea1.document.close();
             txtArea1.focus();
-            sa = txtArea1.document.execCommand("SaveAs", true, "DataExport.xls");
+            sa = txtArea1.document.execCommand("SaveAs", true, "DataExport_CLABSI_<?php echo $sysdateu; ?>.xls");
         } else {               //other browser not tested on IE 11
-            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table));
+            // sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table));
+            var link = document.createElement('a');
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_html = encodeURIComponent(table);
+            link.href = data_type + ', ' + table_html;
+            link.download = 'DataExport_CLABSI_<?php echo $sysdateu; ?>.xls';
+            link.click();
+            // e.preventDefault();
         }
         return (sa);
 
+      })
+
+      $('#btnDownloadPedVAE').click(function(){
+        var table =  $('#tmpDivPedVAE').html();
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        var is_edge = navigator.userAgent.toLowerCase().indexOf('edge') > -1;
+        if(is_edge === true) {
+           sa = true;
+          var blob = new Blob( [ table ], { type: "text/html"} );
+          window.navigator.msSaveOrOpenBlob( blob, "output.xls" );
+          console.log('ssss');
+        } else
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+          console.log('aaaa');
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(table);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "DataExport_PedVAE_<?php echo $sysdateu; ?>.xls");
+        } else {               //other browser not tested on IE 11
+            // sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table) +'; filename=DataExport_PedVAE_xls;');
+            var link = document.createElement('a');
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_html = encodeURIComponent(table);
+            link.href = data_type + ', ' + table_html;
+            link.download = 'DataExport_PedVAE_<?php echo $sysdateu; ?>.xls';
+            link.click();
+            // e.preventDefault();
+        }
+        return (sa);
       })
 
       $('.neoPatienForm').submit(function(){
