@@ -92,7 +92,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
                   <img src="../../img/analysis.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./neonate-analytic?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
                 </div>
                 <div class="col-6 col-sm-3 mb-4">
-                  <img src="../../img/backup.png" alt="" class="img-fluid thumbnail-icon">
+                  <img src="../../img/backup.png" alt="" class="img-fluid thumbnail-icon" onclick="fnc.gotoUrl('./neonate-export?uid=<?php echo $uid;?>&role=<?php echo $role;?>')">
                 </div>
               </div>
               <?php

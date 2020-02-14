@@ -58,6 +58,12 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
       background-size: cover;
       background-position: center;
     }
+
+    #chart {
+      max-width: 100%;
+    }
+
+
   </style>
 </head>
 
@@ -289,6 +295,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="../../node_modules/select2/dist/js/select2.full.min.js"></script>
   <script src="../../node_modules/selectric/public/jquery.selectric.min.js"></script>
+  <script src="../../node_modules/apexcharts.js/dist/apexcharts.js"></script>
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -326,6 +333,21 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
       // $("#tableQuarter").tableExport();
 
       preload.hide()
+
+      // var options = {
+      //               chart: {
+      //                 type: 'line'
+      //               },
+      //               series: [{
+      //                 name: 'SIR o',
+      //                 data: [30,40,45,50,49,60,70,91,125]
+      //               }],
+      //               xaxis: {
+      //                 categories: ['1st', '2nd', '3rd', '4th']
+      //               }
+      //             }
+
+
 
     })
 
@@ -394,6 +416,164 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
         return (sa);
       })
 
+      $('#btnChartCLABSI').click(function(){
+        $('#chartCLABSIModal').modal()
+        console.log('CL -> ' + $('#gran_total_CLABSI').text());
+        console.log('SIR Q1 -> ' + $('#sir_1').text());
+        console.log('SIR Q2 -> ' + $('#sir_2').text());
+        console.log('SIR Q3 -> ' + $('#sir_3').text());
+        console.log('SIR Q4 -> ' + $('#sir_4').text());
+        var cl = parseFloat($('#gran_total_CLABSI').text());
+        var q1 = parseFloat($('#sir_1').text());
+        var q2 = parseFloat($('#sir_2').text());
+        var q3 = parseFloat($('#sir_3').text());
+        var q4 = parseFloat($('#sir_4').text());
+        var options = {
+            series: [
+              {
+                name: "SIR",
+                data: [q1, q2, q3, q4]
+              },
+              {
+                name: "CL",
+                data: [cl, cl, cl, cl]
+              }
+            ],
+              chart: {
+              height: 350,
+              type: 'line',
+              zoom: {
+                enabled: false
+              }
+            },
+            colors: ['#77B6EA', '#545454'],
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'straight',
+              dashArray: [0, 5]
+            },
+            title: {
+              text: 'SPC chart of CLABSI SIR',
+              align: 'center',
+              style: {
+                fontSize:  '24px',
+                fontWeight:  'bold',
+                fontFamily:  undefined,
+                color:  '#263238'
+              },
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+              },
+            },
+            // markers: {
+            //   size: [10, 0],
+            //   colors: [
+            //     ["#FFA41B", '#fff', '#d0ecce', '#d0ecce']
+            //   ],
+            //   strokeColors: "#fff",
+            //   strokeWidth: 0,
+            //   hover: {
+            //     size: 13,
+            //   }
+            // },
+            markers: {
+              // discrete: [{
+              //   seriesIndex: 0,
+              //   dataPointIndex: 1,
+              //   fillColor: '#e3e3e3',
+              //   strokeColor: '#fff',
+              //   size: 10
+              // }]
+              size: 10,
+              discrete: [
+                {
+                  seriesIndex: 0,
+                  dataPointIndex: 0,
+                  fillColor: '#ffd600',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 10,
+                },
+                {
+                  seriesIndex: 0,
+                  dataPointIndex: 1,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 10,
+                },
+                {
+                  seriesIndex: 0,
+                  dataPointIndex: 2,
+                  fillColor: '#77B6EA',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 10,
+                },
+                {
+                  seriesIndex: 0,
+                  dataPointIndex: 3,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 10,
+                },
+                {
+                  seriesIndex: 1,
+                  dataPointIndex: 0,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 0,
+                },
+                {
+                  seriesIndex: 1,
+                  dataPointIndex: 1,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 0,
+                },
+                {
+                  seriesIndex: 1,
+                  dataPointIndex: 2,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 0,
+                },
+                {
+                  seriesIndex: 1,
+                  dataPointIndex: 3,
+                  fillColor: '#ff004c',
+                  strokeColor: "#FFF",
+                  strokeWidth: 0,
+                  size: 0,
+                }
+              ]
+            },
+            xaxis: {
+              title: {
+                text: 'Quarter of the year 2012'
+              },
+              categories: ['1st', '2nd', '3rd', '4th'],
+            },
+            yaxis: {
+              title: {
+                text: 'SIR of CLABSI'
+              }
+            }
+          };
+          var chart = new ApexCharts(document.querySelector("#chart"), options);
+          chart.render();
+
+      })
+
       $('.neoPatienForm').submit(function(){
         neonate.savePatient()
       })
@@ -421,5 +601,16 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
       $('#txtLos').val(_Diff + 1)
     }
   </script>
+
+  <!-- Modal -->
+  <div class="modal fade" id="chartCLABSIModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -23,7 +23,7 @@ define( 'ROOT_DOMAIN', 'https://fxplor.com/nisa/');
 // define( 'DB_PASSWORD', 'rmis5' );
 // define( 'DB_HOST', '157.230.46.106' );
 // define( 'TB_PREFIX', '' );
-// define( 'ROOT_DOMAIN', 'http://localhost/rmis5/' );
+// define( 'ROOT_DOMAIN', 'http://localhost/nisa/' );
 
 // Define system parameters
 $sysdate = date('Y-m-d');
