@@ -296,6 +296,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/select2/dist/js/select2.full.min.js"></script>
   <script src="../../node_modules/selectric/public/jquery.selectric.min.js"></script>
   <script src="../../node_modules/apexcharts.js/dist/apexcharts.js"></script>
+  <script src="../../node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+
   <script src="../../assets/js/stisla.js"></script>
 
   <!-- Template JS File -->
@@ -571,7 +573,55 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
           };
           var chart = new ApexCharts(document.querySelector("#chart"), options);
           chart.render();
+        //   var dataURL = chart.dataURI().then((uri) => {
+        //   var pdf = new jsPDF();
+        //   // pdf.addImage(uri, 'PNG', 0, 0);
+        //   pdf.addImage(uri , 'png', 5, 5, 40, 10);
+        //   pdf.save("download.pdf");
+        // })
 
+        // var svgData = $("#chart")[0].outerHTML;
+        // var svgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
+        // var svgUrl = URL.createObjectURL(svgBlob);
+        // var downloadLink = document.createElement("a");
+        // downloadLink.href = svgUrl;
+        // downloadLink.download = "newesttree.svg";
+        // document.body.appendChild(downloadLink);
+        // downloadLink.click();
+        // document.body.removeChild(downloadLink);
+
+        //get svg element.
+        var svg = document.getElementById("chart");
+
+        //get svg source.
+        var serializer = new XMLSerializer();
+        var source = serializer.serializeToString(svg);
+
+        //add name spaces.
+        if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+            source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+        }
+        if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+            source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+        }
+
+        //add xml declaration
+        // source = '<?//xml version="1.0" standalone="no"?>\r\n' + source;
+        //
+        // //convert svg source to URI data scheme.
+        // var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+        //
+        // //set url value to a element's href attribute.
+        // document.getElementById("link").href = url;
+        // //you can download svg file by right click menu.
+        // window.open(document.getElementById("link").href, target="_blank")
+
+      })
+
+      $('#link').click(function(){
+        var svg = $("#chart").html();
+        var b64 = Base64.encode(svg);
+        console.log(b64);
       })
 
       $('.neoPatienForm').submit(function(){
@@ -608,6 +658,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
       <div class="modal-content">
         <div class="modal-body">
           <div id="chart"></div>
+          <a href="#" id="link">asd</a>
         </div>
       </div>
     </div>

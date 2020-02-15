@@ -7,13 +7,13 @@ var conf = {
 }
 
 
-var conf = {
-    domain: 'https://fxplor.com/nisa/',
-    api: 'https://fxplor.com/nisa/controller/',
-    prefix: 'nsllc_',
-    mail_user: 'rmismedpsu@gmail.com',
-    mail_key: 'cm1pc21lZHBzdUBnbWFpbC5jb20yMDE5LTEwLTIyIDIxOjU4OjU3MTI0LjEyMi40Mi4yNDU=',
-}
+// var conf = {
+//     domain: 'https://fxplor.com/nisa/',
+//     api: 'https://fxplor.com/nisa/controller/',
+//     prefix: 'nsllc_',
+//     mail_user: 'rmismedpsu@gmail.com',
+//     mail_key: 'cm1pc21lZHBzdUBnbWFpbC5jb20yMDE5LTEwLTIyIDIxOjU4OjU3MTI0LjEyMi40Mi4yNDU=',
+// }
 
 // =======
 // var conf = {
