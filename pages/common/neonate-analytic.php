@@ -296,10 +296,10 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="../../node_modules/select2/dist/js/select2.full.min.js"></script>
   <script src="../../node_modules/selectric/public/jquery.selectric.min.js"></script>
-  <script src="../../node_modules/apexcharts.js/dist/apexcharts.js"></script>
-  <script src="../../node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
-  <!-- <script src="../../node_modules/fusioncharts/js/fusioncharts.js"></script>
-  <script src="../../node_modules/fusioncharts/js/themes/fusioncharts.theme.fusion.js"></script> -->
+  <!-- <script src="../../node_modules/apexcharts.js/dist/apexcharts.js"></script>
+  <script src="../../node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script> -->
+  <script src="../../node_modules/fusioncharts/js/fusioncharts.js"></script>
+  <script src="../../node_modules/fusioncharts/js/themes/fusioncharts.theme.fusion.js"></script>
 
   <script src="../../assets/js/stisla.js"></script>
 
