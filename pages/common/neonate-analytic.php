@@ -61,6 +61,7 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
 
     #chart {
       max-width: 100%;
+      height: 300px;
     }
 
 
@@ -297,6 +298,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../node_modules/selectric/public/jquery.selectric.min.js"></script>
   <script src="../../node_modules/apexcharts.js/dist/apexcharts.js"></script>
   <script src="../../node_modules/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+  <!-- <script src="../../node_modules/fusioncharts/js/fusioncharts.js"></script>
+  <script src="../../node_modules/fusioncharts/js/themes/fusioncharts.theme.fusion.js"></script> -->
 
   <script src="../../assets/js/stisla.js"></script>
 
@@ -430,191 +433,160 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
         var q2 = parseFloat($('#sir_2').text());
         var q3 = parseFloat($('#sir_3').text());
         var q4 = parseFloat($('#sir_4').text());
-        var options = {
-            series: [
-              {
-                name: "SIR",
-                data: [q1, q2, q3, q4]
-              },
-              {
-                name: "CL",
-                data: [cl, cl, cl, cl]
-              }
-            ],
-              chart: {
-              height: 350,
-              type: 'line',
-              zoom: {
-                enabled: false
-              }
-            },
-            colors: ['#77B6EA', '#545454'],
-            dataLabels: {
-              enabled: false
-            },
-            stroke: {
-              curve: 'straight',
-              dashArray: [0, 5]
-            },
-            title: {
-              text: 'SPC chart of CLABSI SIR',
-              align: 'center',
-              style: {
-                fontSize:  '24px',
-                fontWeight:  'bold',
-                fontFamily:  undefined,
-                color:  '#263238'
-              },
-            },
-            grid: {
-              row: {
-                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                opacity: 0.5
-              },
-            },
-            // markers: {
-            //   size: [10, 0],
-            //   colors: [
-            //     ["#FFA41B", '#fff', '#d0ecce', '#d0ecce']
-            //   ],
-            //   strokeColors: "#fff",
-            //   strokeWidth: 0,
-            //   hover: {
-            //     size: 13,
-            //   }
-            // },
-            markers: {
-              // discrete: [{
-              //   seriesIndex: 0,
-              //   dataPointIndex: 1,
-              //   fillColor: '#e3e3e3',
-              //   strokeColor: '#fff',
-              //   size: 10
-              // }]
-              size: 10,
-              discrete: [
-                {
-                  seriesIndex: 0,
-                  dataPointIndex: 0,
-                  fillColor: '#ffd600',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 10,
-                },
-                {
-                  seriesIndex: 0,
-                  dataPointIndex: 1,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 10,
-                },
-                {
-                  seriesIndex: 0,
-                  dataPointIndex: 2,
-                  fillColor: '#77B6EA',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 10,
-                },
-                {
-                  seriesIndex: 0,
-                  dataPointIndex: 3,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 10,
-                },
-                {
-                  seriesIndex: 1,
-                  dataPointIndex: 0,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 0,
-                },
-                {
-                  seriesIndex: 1,
-                  dataPointIndex: 1,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 0,
-                },
-                {
-                  seriesIndex: 1,
-                  dataPointIndex: 2,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 0,
-                },
-                {
-                  seriesIndex: 1,
-                  dataPointIndex: 3,
-                  fillColor: '#ff004c',
-                  strokeColor: "#FFF",
-                  strokeWidth: 0,
-                  size: 0,
-                }
-              ]
-            },
-            xaxis: {
-              title: {
-                text: 'Quarter of the year 2012'
-              },
-              categories: ['1st', '2nd', '3rd', '4th'],
-            },
-            yaxis: {
-              title: {
-                text: 'SIR of CLABSI'
-              }
-            }
-          };
-          var chart = new ApexCharts(document.querySelector("#chart"), options);
-          chart.render();
-        //   var dataURL = chart.dataURI().then((uri) => {
-        //   var pdf = new jsPDF();
-        //   // pdf.addImage(uri, 'PNG', 0, 0);
-        //   pdf.addImage(uri , 'png', 5, 5, 40, 10);
-        //   pdf.save("download.pdf");
-        // })
+        // Create a JSON object to store the chart configurations
+        const chartData = [{
+            "label": "Venezuela",
+            "value": "290"
+        }, {
+            "label": "Saudi",
+            "value": "260"
+        }, {
+            "label": "Canada",
+            "value": "180"
+        }, {
+            "label": "Iran",
+            "value": "140"
+        }, {
+            "label": "Russia",
+            "value": "115"
+        }, {
+            "label": "UAE",
+            "value": "100"
+        }, {
+            "label": "US",
+            "value": "30"
+        }, {
+            "label": "China",
+            "value": "30"
+        }];
 
-        // var svgData = $("#chart")[0].outerHTML;
-        // var svgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
-        // var svgUrl = URL.createObjectURL(svgBlob);
-        // var downloadLink = document.createElement("a");
-        // downloadLink.href = svgUrl;
-        // downloadLink.download = "newesttree.svg";
-        // document.body.appendChild(downloadLink);
-        // downloadLink.click();
-        // document.body.removeChild(downloadLink);
+        //STEP 3 - Chart Configurations
+        const chartConfig = {
+          type: 'column2d',
+          renderAt: 'chart',
+          width: '100%',
+          height: '400',
+          dataFormat: 'json',
+          dataSource: {
+              // Chart Configuration
+              "chart": {
+                  "caption": "Countries With Most Oil Reserves [2017-18]",
+                  "subCaption": "In MMbbl = One Million barrels",
+                  "xAxisName": "Country",
+                  "yAxisName": "Reserves (MMbbl)",
+                  "numberSuffix": "K",
+                  "theme": "fusion",
+                  exportEnabled: "1",
+                  },
+              // Chart Data
+              "data": chartData
+          },
 
-        //get svg element.
-        var svg = document.getElementById("chart");
+        };
 
-        //get svg source.
-        var serializer = new XMLSerializer();
-        var source = serializer.serializeToString(svg);
+        FusionCharts.ready(function(){
+          var fusioncharts = new FusionCharts(chartConfig);
+          fusioncharts.render();
+        });
 
-        //add name spaces.
-        if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
-            source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
-        }
-        if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
-            source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
-        }
-
-        //add xml declaration
-        // source = '<?//xml version="1.0" standalone="no"?>\r\n' + source;
+        //         var options = {
+        //   chart: {
+        //     height: 350,
+        //     type: "line",
+        //     stacked: false,
+        //     toolbar: {
+        //         show: true,
+        //         tools: {
+        //           download: true,
+        //           selection: true,
+        //           zoom: true,
+        //           zoomin: true,
+        //           zoomout: true,
+        //           pan: true,
+        //           reset: true | '<img src="/static/icons/reset.png" width="20">',
+        //           customIcons: []
+        //         },
+        //         autoSelected: 'zoom'
+        //       },
+        //   },
+        //   dataLabels: {
+        //     enabled: false
+        //   },
+        //   colors: ["#FF1654", "#247BA0"],
+        //   series: [
+        //     {
+        //       name: "Series A",
+        //       data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+        //     },
+        //     {
+        //       name: "Series B",
+        //       data: [20, 29, 37, 36, 44, 45, 50, 58]
+        //     }
+        //   ],
+        //   stroke: {
+        //     width: [4, 4]
+        //   },
+        //   plotOptions: {
+        //     bar: {
+        //       columnWidth: "20%"
+        //     }
+        //   },
+        //   xaxis: {
+        //     categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
+        //   },
+        //   yaxis: [
+        //     {
+        //       axisTicks: {
+        //         show: true
+        //       },
+        //       axisBorder: {
+        //         show: true,
+        //         color: "#FF1654"
+        //       },
+        //       labels: {
+        //         style: {
+        //           color: "#FF1654"
+        //         }
+        //       },
+        //       title: {
+        //         text: "Series A"
+        //       }
+        //     },
+        //     {
+        //       opposite: true,
+        //       axisTicks: {
+        //         show: true
+        //       },
+        //       axisBorder: {
+        //         show: true,
+        //         color: "#247BA0"
+        //       },
+        //       labels: {
+        //         style: {
+        //           color: "#247BA0"
+        //         }
+        //       },
+        //       title: {
+        //         text: "Series B"
+        //       }
+        //     }
+        //   ],
+        //   tooltip: {
+        //     shared: false,
+        //     intersect: true,
+        //     x: {
+        //       show: false
+        //     }
+        //   },
+        //   legend: {
+        //     horizontalAlign: "left",
+        //     offsetX: 40
+        //   }
+        // };
         //
-        // //convert svg source to URI data scheme.
-        // var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+        // var chart = new ApexCharts(document.querySelector("#chart"), options);
         //
-        // //set url value to a element's href attribute.
-        // document.getElementById("link").href = url;
-        // //you can download svg file by right click menu.
-        // window.open(document.getElementById("link").href, target="_blank")
+        // chart.render();
 
       })
 
