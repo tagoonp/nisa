@@ -131,6 +131,7 @@ var neonate = {
 
       var jxr1 = $.post(conf.api + 'neonate_report_sir?stage=report', param, function(){})
                  .always(function(resp){
+                   console.log(resp);
                    preload.hide()
                    if(resp != 'No data'){
                      $('#table-zone').removeClass('dn')
