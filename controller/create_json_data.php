@@ -34,6 +34,9 @@ if($stage == 'create'){
   $strSQL = "INSERT INTO nis_neo_chart_data (SESS_ID, UID, JSON_DATA, CHART_GROUP) VALUES ('$session', '$uid', '$jstring', '$graph_type')";
   $result = mysqli_query($conn, $strSQL);
   if($result){
+
+    exec("Rscript create_neonate_chart.r $session $uid");
+
     echo "Y";
   }else{
     echo "N";
