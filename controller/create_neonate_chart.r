@@ -8,6 +8,9 @@ library(ggplot2)
 library(tidyverse)
 library(jsonlite)
 
+
+setwd('/var/www/html/nisa/img')
+
 quandl_data <- fromJSON("https://fxplor.com/nisa/controller/get_json_data.php?session=" + SESSION_ID)
 df <- as.data.frame(quandl_data)
 use(df)
