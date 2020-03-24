@@ -11,7 +11,8 @@ library(jsonlite)
 
 setwd('/var/www/html/nisa/img')
 
-quandl_data <- fromJSON("https://fxplor.com/nisa/controller/get_json_data.php?session=" + SESSION_ID)
+data_url = paste("http://simanh.psu.ac.th/nisa/controller/get_json_data.php?session=", SESSION_ID)
+quandl_data <- fromJSON(data_url)
 df <- as.data.frame(quandl_data)
 use(df)
 df
