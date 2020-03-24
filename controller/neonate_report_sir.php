@@ -162,13 +162,13 @@ if($stage == 'report'){
         <td><?php $buffer_3 = 0; if($cd1 != 0){ $buffer_3 = ($total_g1 * 1000)/$cd1; } echo number_format($buffer_3, 1); ?></td>
         <td  id="sir_<?php echo $cr;?>" ><?php $sir1 = 0; if($cad1 != 0){  $sir1= $total_g1/$cad1; } echo number_format($sir1, 1); $cad_sum += $cad1;?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lcl_<?php echo $cr;?>"><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1), 'r1')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lwl_<?php echo $cr;?>"><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
+        <td id="uwl_<?php echo $cr;?>"><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g1 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
+        <td id="ucl_<?php echo $cr;?>"><?php $buffer_6 = 0; if($cad1 != 0){ $buffer_6 = $buffer_5/$cad1; }; echo number_format($buffer_6, 2);?></td>
       </tr>
       <tr>
         <td rowspan="6" style="vertical-align: top;">2nd</td>
@@ -254,13 +254,13 @@ if($stage == 'report'){
         <td><?php $buffer_3 = 0; if($cd2 != 0){ $buffer_3 = ($total_g2 * 1000)/$cd2; } echo number_format($buffer_3, 1); ?></td>
         <td  id="sir_<?php echo ($cr + 1);?>"><?php $sir2 = 0; if($cad2 != 0){  $sir2 = $total_g2/$cad2; } echo number_format($sir2, 1);  $cad_sum += $cad2;?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lcl_<?php echo ($cr + 1);?>"><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lwl_<?php echo ($cr + 1);?>"><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r3')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
+        <td id="uwl_<?php echo ($cr + 1);?>"><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g2 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td
+        <td id="ucl_<?php echo ($cr + 1);?>"><?php $buffer_6 = 0; if($cad2 != 0){ $buffer_6 = $buffer_5/$cad2; }; echo number_format($buffer_6, 2);?></td
       </tr>
 
       <tr>
@@ -346,13 +346,13 @@ if($stage == 'report'){
         <td><?php $buffer_3 = 0; if($cd3 != 0){ $buffer_3 = ($total_g3 * 1000)/$cd3; } echo number_format($buffer_3, 1); ?></td>
         <td id="sir_<?php echo ($cr + 2);?>"><?php $sir3 = 0; if($cad3 != 0){  $sir3= $total_g3/$cad3; } echo number_format($sir3, 1); $cad_sum += $cad3;?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lcl_<?php echo ($cr + 2);?>"><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lwl_<?php echo ($cr + 2);?>"><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
+        <td id="uwl_<?php echo ($cr + 2);?>"><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g3 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
+        <td id="ucl_<?php echo ($cr + 2);?>"><?php $buffer_6 = 0; if($cad3 != 0){ $buffer_6 = $buffer_5/$cad3; }; echo number_format($buffer_6, 2);?></td>
       </tr>
 
       <tr>
@@ -438,13 +438,13 @@ if($stage == 'report'){
         <td><?php $buffer_3 = 0; if($cd4 != 0){ $buffer_3 = ($total_g4 * 1000)/$cd4; } echo number_format($buffer_3, 1); ?></td>
         <td id="sir_<?php echo ($cr + 3);?>"><?php $sir4 = 0; if($cad4 != 0){  $sir4 = $total_g1/$cad4; } echo number_format($sir4, 1);  $cad_sum += $cad4;?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r2')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lcl_<?php echo ($cr + 3);?>"><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4), 'r1')/2; echo number_format(($buffer_5), 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
+        <td id="lwl_<?php echo ($cr + 3);?>"><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r3')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
+        <td id="uwl_<?php echo ($cr + 3);?>"><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
         <td style="display: none;"><?php $buffer_5 = getnLCL($conn, ($total_g4 + 1), 'r4')/2; echo number_format($buffer_5, 4);?></td>
-        <td><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
+        <td id="ucl_<?php echo ($cr + 3);?>"><?php $buffer_6 = 0; if($cad4 != 0){ $buffer_6 = $buffer_5/$cad4; }; echo number_format($buffer_6, 2);?></td>
       </tr>
       <?php
       $cr = $cr + 4;

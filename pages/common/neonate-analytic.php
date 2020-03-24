@@ -314,6 +314,8 @@ if(($resultHospchar) && (mysqli_num_rows($resultHospchar) > 0)){
   <script src="../../assets/custom/js/neonate.js"></script>
 
   <script type="text/javascript">
+
+    var session_id = ''
     $(document).ready(function(){
 
       // if(jQuery().daterangepicker){

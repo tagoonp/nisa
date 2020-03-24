@@ -133,11 +133,15 @@ var neonate = {
                  .always(function(resp){
                    console.log(resp);
                    preload.hide()
+                   $data = []
                    if(resp != 'No data'){
                      $('#table-zone').removeClass('dn')
                      $('#tablereportCLASBI').removeClass('dn')
                      $('#tmpDivCLASBI').html(resp)
                      setFontsize()
+                     setTimeout(function(){
+                       generateData()
+                     }, 2000)
                    }
                  })
     }
@@ -1091,4 +1095,58 @@ var neonate = {
                  }
                })
   }
+}
+
+function generateData(){
+  $data = [];
+
+  for (var i = 1; i < 16; i++) {
+    if($('#sir_' + i).text() != ''){
+      $dw = 2
+      $ds = 16
+      $dc = 'yellow'
+      $cl = parseFloat($('#gran_total_CLABSI').text())
+      $lcl = parseFloat($('#lcl_' + i).text())
+      $lwl = parseFloat($('#lwl_' + i).text())
+      $uwl = parseFloat($('#uwl_' + i).text())
+      $ucl = parseFloat($('#ucl_' + i).text())
+
+      if($lwl != $cl){ $dw = 8; $ds = 18; $cd = 'yellow'  }
+      if($lcl != $cl){ $dw = 8; $ds = 18; $cd = 'red'  }
+      if(($lwl > $cl) && ($lcl > $cl)){ $dw = 8; $ds = 18; $cd = 'red' }
+
+      if(($uwl < $cl) || ($ucl < $cl)){
+        if($uwl < $cl){ $dw = 8; $ds = 18; $cd = 'yellow'  }
+        if($ucl < $cl){ $dw = 8; $ds = 18; $cd = 'red'  }
+        if(($uwl < $cl) && ($ucl < $cl)){ $dw = 8; $ds = 18; $cd = 'red' }
+      }
+
+      $buff = {
+        // SQ: i,
+        X: "Q"+ i,
+        CL: $('#gran_total_CLABSI').text(),
+        SIR: $('#sir_' + i).text(),
+        LCL: $('#lcl_' + i).text(),
+        LWL: $('#lwl_' + i).text(),
+        UWL: $('#uwl_' + i).text(),
+        UCL: $('#ucl_' + i).text(),
+        DS: $ds,
+        DW: $dw,
+        DC: $dc
+      }
+      $data.push($buff)
+    }
+  }
+
+  session_id = fnc.randomString(20)
+  $json_data = JSON.stringify($data)
+
+  var param = {
+    uid: current_user,
+    vis_session: session_id,
+    json_string: $json_data,
+    graph_type: 'neonate'
+  }
+
+  var jxr = $.post(conf.api + 'create_json_data?stage=create', param , function(){})
 }
