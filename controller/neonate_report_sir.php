@@ -157,7 +157,7 @@ if($stage == 'report'){
       </tr>
       <tr>
         <td>Total</td>
-        <td><?php echo number_format($total_g1);  $grand_total = $grand_total + $total_g1; echo "<br>".$grand_total; ?></td>
+        <td><?php echo number_format($total_g1);  $grand_total = $grand_total + $total_g1; ?></td>
         <td><?php echo number_format($cd1); $grand_total_cathetor += $cd1; ?></td>
         <td><?php $buffer_3 = 0; if($cd1 != 0){ $buffer_3 = ($total_g1 * 1000)/$cd1; } echo number_format($buffer_3, 1); ?></td>
         <td  id="sir_<?php echo $cr;?>" ><?php $sir1 = 0; if($cad1 != 0){  $sir1= $total_g1/$cad1; } echo number_format($sir1, 1); $cad_sum += $cad1;?></td>
@@ -249,7 +249,7 @@ if($stage == 'report'){
       </tr>
       <tr>
         <td>Total</td>
-        <td><?php echo number_format($total_g2);  $grand_total = $grand_total + $total_g2; echo "<br>".$grand_total; ?></td>
+        <td><?php echo number_format($total_g2);  $grand_total = $grand_total + $total_g2; ?></td>
         <td><?php echo number_format($cd2); $grand_total_cathetor += $cd2; ?></td>
         <td><?php $buffer_3 = 0; if($cd2 != 0){ $buffer_3 = ($total_g2 * 1000)/$cd2; } echo number_format($buffer_3, 1); ?></td>
         <td  id="sir_<?php echo ($cr + 1);?>"><?php $sir2 = 0; if($cad2 != 0){  $sir2 = $total_g2/$cad2; } echo number_format($sir2, 1);  $cad_sum += $cad2;?></td>
@@ -341,7 +341,7 @@ if($stage == 'report'){
       </tr>
       <tr>
         <td>Total</td>
-        <td><?php echo number_format($total_g3);   $grand_total = $grand_total + $total_g3; echo "<br>".$grand_total; ?></td>
+        <td><?php echo number_format($total_g3);   $grand_total = $grand_total + $total_g3; ?></td>
         <td><?php echo number_format($cd3); $grand_total_cathetor += $cd3; ?></td>
         <td><?php $buffer_3 = 0; if($cd3 != 0){ $buffer_3 = ($total_g3 * 1000)/$cd3; } echo number_format($buffer_3, 1); ?></td>
         <td id="sir_<?php echo ($cr + 2);?>"><?php $sir3 = 0; if($cad3 != 0){  $sir3= $total_g3/$cad3; } echo number_format($sir3, 1); $cad_sum += $cad3;?></td>
@@ -433,7 +433,7 @@ if($stage == 'report'){
       </tr>
       <tr>
         <td>Total</td>
-        <td><?php echo number_format($total_g4);  $grand_total = $grand_total + $total_g4; echo "<br>".$grand_total;?></td>
+        <td><?php echo number_format($total_g4);  $grand_total = $grand_total + $total_g4; ?></td>
         <td><?php echo number_format($cd4); $grand_total_cathetor = $grand_total_cathetor + $cd4; ?></td>
         <td><?php $buffer_3 = 0; if($cd4 != 0){ $buffer_3 = ($total_g4 * 1000)/$cd4; } echo number_format($buffer_3, 1); ?></td>
         <td id="sir_<?php echo ($cr + 3);?>"><?php $sir4 = 0; if($cad4 != 0){  $sir4 = $total_g1/$cad4; } echo number_format($sir4, 1);  $cad_sum += $cad4;?></td>
