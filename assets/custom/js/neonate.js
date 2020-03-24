@@ -1149,4 +1149,7 @@ function generateData(){
   }
 
   var jxr = $.post(conf.api + 'create_json_data?stage=create', param , function(){})
+             .always(function(resp){
+               console.log(resp);
+             })
 }
